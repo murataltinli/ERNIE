@@ -1,4 +1,4 @@
-#include "src/IBD_Event_Generator.C"
+#include "IBD_Event_Generator.C"
 #include <iostream>
 
 #include "readline/readline.h"
