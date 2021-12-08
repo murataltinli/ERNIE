@@ -10,7 +10,6 @@ using namespace std;
 
 int main(int argc, char** argv)
 {
-  int mw = pow(10,6);
   int n = 10000;
   int seed = 1;
   const char* rootFileName = "Reactor_Antineutrino_IBD_Events.root";
@@ -41,7 +40,7 @@ int main(int argc, char** argv)
       auto value = line.substr(delimiterPos + 1);
       if(name == "Seed"){seed=stoi(value);}
       else if(name == "N"){n=stoi(value);}
-      else if(name == "Power"){power=stof(value)*mw;}
+      else if(name == "Power"){power=stof(value)*pow(10,6);}
       else if(name == "U235"){f5=stof(value);}
       else if(name == "U238"){f8=stof(value);}
       else if(name == "Pu239"){f9=stof(value);}
