@@ -1,0 +1,16 @@
+# Start of reactor cycle parameter card
+
+# random generator seed
+Seed= 1
+
+# number of events for U235
+N= 10000
+
+# reactor power (MW)
+Power= 3200
+
+# fission fractions
+U235= 0.763
+U238= 0.0476
+Pu239= 0.162
+Pu241= 0.027
