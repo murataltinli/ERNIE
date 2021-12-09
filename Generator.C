@@ -10,16 +10,12 @@ using namespace std;
 
 int main(int argc, char** argv)
 {
-  int n = 10000;
-  int seed = 1;
+  int n, seed;
   const char* rootFileName = "Reactor_Antineutrino_IBD_Events.root";
   const char* hepmc3FileName = "Reactor_Antineutrino_IBD_Events.hepmc3";
   const char* cardFileName = "Default_Card.txt";
-  double power = 3.2 * pow(10, 9); // reactor power (W)
-  double f5 = 0.765;
-  double f8 = 0.0476;
-  double f9 = 0.162;
-  double f1 = 0.027;
+  double power; // reactor power (W)
+  double f5, f8, f9, f1;
 
   if(argc>1){cardFileName=argv[1];}
   if(argc>2){rootFileName=argv[2];}
