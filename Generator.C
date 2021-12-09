@@ -13,7 +13,7 @@ int main(int argc, char** argv)
   int n, seed;
   const char* rootFileName = "Reactor_Antineutrino_IBD_Events.root";
   const char* hepmc3FileName = "Reactor_Antineutrino_IBD_Events.hepmc3";
-  const char* cardFileName = "Default_Card.txt";
+  const char* cardFileName = "default_card.txt";
   double power; // reactor power (W)
   double f5, f8, f9, f1;
 
