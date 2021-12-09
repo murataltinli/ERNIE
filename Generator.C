@@ -51,6 +51,6 @@ int main(int argc, char** argv)
   }
   else 
   {
-    cerr << "Couldn't open config file for reading.\n";
+    cerr << "Couldn't open card file for reading.\n";
   }
 }
