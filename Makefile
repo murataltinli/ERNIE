@@ -1,7 +1,7 @@
 CC = gcc
 CFLAGS = -Wall `root-config --cflags`
 LIBS = `root-config --glibs` -lstdc++ \
-lib/libROOT.a \
+-Wl,-rpath $(ROOTSYS)/lib \
 lib/libHepMC3-static.a
 INCLUDES = -I./include
 INPUT = Generator.C
