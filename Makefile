@@ -11,7 +11,7 @@ $(OUTPUT):
 	$(CC) $(INPUT) -o $(OUTPUT) $(CFLAGS) $(INCLUDES) $(LIBS)
 
 clean:
-	rm -f $(OUTPUT) *.o
+	rm -f $(OUTPUT)
 
 install:
 	cp $(OUTPUT) /usr/bin
