@@ -1,8 +1,8 @@
 CC = gcc
 CFLAGS = -Wall `root-config --cflags`
 LIBS = `root-config --glibs` -lstdc++ \
-libs/libROOT.a \
-libs/libHepMC3-static.a
+lib/libROOT.a \
+lib/libHepMC3-static.a
 INCLUDES = -I./include
 INPUT = Generator.C
 OUTPUT = Generator
