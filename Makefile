@@ -1,9 +1,9 @@
 CC = gcc
 CFLAGS = -Wall `root-config --cflags`
-LIBS = `root-config --glibs` -lstdc++ \
+LIBS = `root-config --glibs` -lHepMC3 -lstdc++ \
 -Wl,-rpath $(ROOTSYS)/lib \
-lib/libHepMC3-static.a
-INCLUDES = -I./include
+-Wl,-rpath $(HOME)/HepMC3/HepMC3-install/lib
+INCLUDES = -I./include -I$(HOME)/HepMC3/HepMC3-install/include
 INPUT = Generator.C
 OUTPUT = Generator
 
