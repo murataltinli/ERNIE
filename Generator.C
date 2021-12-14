@@ -48,7 +48,7 @@ int main(int argc, char** argv)
     cout << "Generating Events..." << endl;
     if(ibd==0)
     {
-      if(strcmp(rootFileName, "Reactor_Antineutrino_IBD_Events.root") == 0 && argc<3)
+      if(strcmp(rootFileName, "Reactor_Antineutrino_IBD_Events.root") == 0 && argc < 3)
       {
         rootFileName = "Reactor_Antineutrino_Events.root";
       }
