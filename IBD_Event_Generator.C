@@ -15,8 +15,6 @@ using namespace std;
 #include "HepMC3/GenEvent.h"
 #include "HepMC3/GenVertex.h"
 #include "HepMC3/GenParticle.h"
-#include "HepMC3/Print.h"
-#include "HepMC3/Selector.h"
 #include "HepMC3/WriterAscii.h"
 
 using namespace HepMC3;
@@ -47,8 +45,8 @@ void IBD_Event_Generator
   int g = 0;
   int par[5] =   {0, // Total
                   5, // U235
-                  9, // Pu239
                   8, // U238
+                  9, // Pu239
                   1}; // Pu241
 
   // pseudorandom number generator
@@ -62,7 +60,7 @@ void IBD_Event_Generator
   TTree* t9 = new TTree("Pu239","E_nu");
   TTree* t1 = new TTree("Pu241","E_nu");
 
-  TTree *t[5] = {t0, t5, t9, t8, t1};
+  TTree *t[5] = {t0, t5, t8, t9, t1};
 
   WriterAscii asc(hepmc3FileName);
 
