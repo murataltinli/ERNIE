@@ -14,3 +14,8 @@ U235= 0.763
 U238= 0.0476
 Pu239= 0.162
 Pu241= 0.027
+
+# inverse beta decay option, 
+# 0: without inverse beta decay (generate only reactor antineutrinos)
+# 1: with inverse beta decay 
+IBD= 1

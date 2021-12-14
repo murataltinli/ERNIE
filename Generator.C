@@ -1,4 +1,5 @@
 #include "IBD_Event_Generator.C"
+#include "Reactor_Antineutrino_Generator.C"
 #include <iostream>
 #include <fstream>
 #include <algorithm>
@@ -11,11 +12,12 @@ using namespace std;
 int main(int argc, char** argv)
 {
   int n, seed;
+  bool ibd;
   const char* rootFileName = "Reactor_Antineutrino_IBD_Events.root";
   const char* hepmc3FileName = "Reactor_Antineutrino_IBD_Events.hepmc3";
   const char* cardFileName = "default_card.txt";
   double power; // reactor power (W)
-  double f5, f8, f9, f1;
+  double f5, f8, f9, f1; // fission fractions
 
   if(argc>1){cardFileName=argv[1];}
   if(argc>2){rootFileName=argv[2];}
@@ -41,13 +43,24 @@ int main(int argc, char** argv)
       else if(name == "U238"){f8=stof(value);}
       else if(name == "Pu239"){f9=stof(value);}
       else if(name == "Pu241"){f1=stof(value);}
+      else if(name == "IBD"){ibd=stoi(value);}
     }
     cout << "Generating Events..." << endl;
-    IBD_Event_Generator(n,seed,rootFileName,hepmc3FileName,power,f5,f8,f9,f1);
-    cout << "Generated events are written into the files:" << endl
-         << "=> " << rootFileName << endl
-         << "=> " << hepmc3FileName << endl;
-    return 0;
+    if(ibd==0)
+    {
+      Reactor_Antineutrino_Generator(n,seed,rootFileName,power,f5,f8,f9,f1);
+      cout << "Generated events are written into the file:" << endl
+           << "=> " << rootFileName << endl;
+      return 0;
+    }
+    else
+    {
+      IBD_Event_Generator(n,seed,rootFileName,hepmc3FileName,power,f5,f8,f9,f1);
+      cout << "Generated events are written into the files:" << endl
+           << "=> " << rootFileName << endl
+           << "=> " << hepmc3FileName << endl;
+      return 0;
+    }
   }
   else 
   {
