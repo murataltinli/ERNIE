@@ -48,6 +48,10 @@ int main(int argc, char** argv)
     cout << "Generating Events..." << endl;
     if(ibd==0)
     {
+      if(strcmp(rootFileName, "Reactor_Antineutrino_IBD_Events.root") == 0 && argc<3)
+      {
+        rootFileName = "Reactor_Antineutrino_Events.root";
+      }
       Reactor_Antineutrino_Generator(n,seed,rootFileName,power,f5,f8,f9,f1);
       cout << "Generated events are written into the file:" << endl
            << "=> " << rootFileName << endl;
