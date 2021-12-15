@@ -1,7 +1,6 @@
 #include "Reactor_Antineutrino_Flux.h"
 #include "Positron_Angle.h"
 #include "Energy_Momentum.h"
-#include "IBD_Cross_Section.h"
 
 #include <random>
 #include <iostream>
