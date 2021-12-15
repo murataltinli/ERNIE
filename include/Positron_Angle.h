@@ -7,7 +7,6 @@
 #ifndef Positron_Angle
 #define Positron_Angle
 
-#include <iostream>
 #include <random>
 #include <cmath>
 
