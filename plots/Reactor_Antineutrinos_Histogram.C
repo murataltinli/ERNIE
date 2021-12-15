@@ -11,7 +11,7 @@
 
 using namespace std;
 
-void Reactor_Antineutrino_Generator()
+void Reactor_Antineutrinos_Histogram()
 {
   int seed = 1; // pseudorandom generator seed
   int n = 1000000;
