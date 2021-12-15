@@ -4,9 +4,9 @@
     https://doi.org/10.1103/PhysRevD.60.053003.
 */
 
-#include <iostream>
 #include <random>
 #include <cmath>
+#include <string>
 
 #include "TH1.h"
 #include "TF1.h"
@@ -20,15 +20,15 @@ using namespace std;
 void Positron_Angle_Histogram(double E_nu = 2.51, int nmax = 100000, int seed = 1)
 {
   default_random_engine gen;
-  //random_device rd{};
-  //mt19937 gen{rd()};
   gen.seed(seed); 
+
+  string title = "cos#theta_{e} distribution at E_{#nu}= " + to_string(E_nu) + " MeV";
   
   uniform_real_distribution<double> d1(-1.0,1.0);
   uniform_real_distribution<double> d2(0.0,1.0);
    
-  TCanvas *c1 = new TCanvas(""); 
-  TH1F * h = new TH1F("","", 80, -1, 1);
+  TCanvas *c1 = new TCanvas("positron angle distribution"); 
+  TH1F * h = new TH1F("cos#theta_{e}",title.c_str(), 80, -1, 1);
   h->GetXaxis()->SetTitle("cos#theta_{e}");
 
   for(int n=0; n<nmax;++n)
@@ -64,5 +64,5 @@ void Positron_Angle_Histogram(double E_nu = 2.51, int nmax = 100000, int seed = 
       }  
     }
   } 
-  c1->Draw();
+  c1->Print("Positron_Angle_Histogram.eps");
 }
