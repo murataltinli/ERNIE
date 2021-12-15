@@ -1,4 +1,4 @@
-#include "Reactor_Antineutrino_Flux.h"
+#include "Reactor_Antineutrino_Flux0.h"
 #include <random>
 #include <iostream>
 
@@ -68,14 +68,14 @@ void Reactor_Antineutrinos_Histogram()
       ++b[p];
       
       double x = distribution(generator) * (xmax - xmin) + xmin;
-      double y = distribution(generator) * RAFlux(xmin,5);
+      double y = distribution(generator) * RAFlux0(xmin,5);
 
       if(b[p]==b[2] && p>2)
       {
         break;
       }
 
-      if(y <= RAFlux(x,par[p]))
+      if(y <= RAFlux0(x,par[p]))
       {      
         h[p]->Fill(x,weight);
         
@@ -122,6 +122,8 @@ void Reactor_Antineutrinos_Histogram()
   h0->GetXaxis()->SetTitle("Energy (MeV)");
 
   legend->Draw();
+
+  c1->Print("Reactor_Antineutrinos_Histogram.eps");
 
   gBenchmark->Show("H");
 }

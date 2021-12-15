@@ -1,4 +1,4 @@
-#include "Reactor_Antineutrino_Flux.h"
+#include "Reactor_Antineutrino_Flux0.h"
 
 #include "TF1.h"
 #include "TCanvas.h"
@@ -11,16 +11,16 @@ void Flux_Graph()
   double xmax = 8;
   TCanvas *c1 = new TCanvas("Reactor_Antineutrino_Flux","Reactor Antineutrino Flux");
   
-  TF1 *fs = new TF1("3.2 GW_{th} Reactor Antineutrino Flux",RAFlux,xmin,xmax,2);
-  TF1 *f5 = new TF1("Flux",RAFlux,xmin,xmax,2);
-  TF1 *f8 = new TF1("Flux",RAFlux,xmin,xmax,2);
-  TF1 *f9 = new TF1("Flux",RAFlux,xmin,xmax,2);
-  TF1 *f1 = new TF1("Flux",RAFlux,xmin,xmax,2);
-  TF1 *fe = new TF1("Flux",RAFlux,xmin,xmax,2);
-  TF1 *f15 = new TF1("Flux",RAFlux,xmin,xmax,2);
-  TF1 *f18 = new TF1("Flux",RAFlux,xmin,xmax,2);
-  TF1 *f19 = new TF1("Flux",RAFlux,xmin,xmax,2);
-  TF1 *f11 = new TF1("Flux",RAFlux,xmin,xmax,2);
+  TF1 *fs = new TF1("3.2 GW_{th} Reactor Antineutrino Flux",RAFlux0,xmin,xmax,2);
+  TF1 *f5 = new TF1("Flux",RAFlux0,xmin,xmax,2);
+  TF1 *f8 = new TF1("Flux",RAFlux0,xmin,xmax,2);
+  TF1 *f9 = new TF1("Flux",RAFlux0,xmin,xmax,2);
+  TF1 *f1 = new TF1("Flux",RAFlux0,xmin,xmax,2);
+  TF1 *fe = new TF1("Flux",RAFlux0,xmin,xmax,2);
+  TF1 *f15 = new TF1("Flux",RAFlux0,xmin,xmax,2);
+  TF1 *f18 = new TF1("Flux",RAFlux0,xmin,xmax,2);
+  TF1 *f19 = new TF1("Flux",RAFlux0,xmin,xmax,2);
+  TF1 *f11 = new TF1("Flux",RAFlux0,xmin,xmax,2);
   
   fs->SetParameter(0,0);
   f5->SetParameter(0,5);
@@ -74,4 +74,6 @@ void Flux_Graph()
   fe->Draw("SAME");
   
   c1->Modified();
+
+  c1->Print("Reactor_Antineutrino_Flux_Graph.eps");
 }
