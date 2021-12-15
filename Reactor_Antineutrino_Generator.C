@@ -60,14 +60,14 @@ void Reactor_Antineutrino_Generator
       ++b[p];
 
       x = distribution(generator) * (xmax - xmin) + xmin;
-      y = distribution(generator) * RAFlux(xmin,5,power,f5,f8,f9,f1) * IBDSigmaTot0(xmax);
+      y = distribution(generator) * RAFlux(xmin,5,power,f5,f8,f9,f1);
 
       if(b[p]==b[1] && p>1)
       {
         break;
       }
 
-      if(y <= RAFlux(x,par[p],power,f5,f8,f9,f1) * IBDSigmaTot0(x))
+      if(y <= RAFlux(x,par[p],power,f5,f8,f9,f1))
       {    
         t[p]->Fill();
         t0->Fill();
