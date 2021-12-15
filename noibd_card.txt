@@ -1,10 +1,11 @@
 # Start of reactor cycle parameter card
+# Reactor antineutrino generation only (without inverse beta decay)
 
 # random generator seed
 Seed= 1
 
 # number of events for U235
-N= 1000
+N= 100000
 
 # reactor power (MW)
 Power= 3200
@@ -15,7 +16,7 @@ U238= 0.0476
 Pu239= 0.162
 Pu241= 0.027
 
-# inverse beta decay option
+# inverse beta decay option 
 # 0: without inverse beta decay
 # 1: with inverse beta decay 
-IBD= 1
+IBD= 0
