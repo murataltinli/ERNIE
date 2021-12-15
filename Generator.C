@@ -2,7 +2,6 @@
 #include "Reactor_Antineutrino_Generator.C"
 #include <iostream>
 #include <fstream>
-#include <algorithm>
 
 #include "readline/readline.h"
 #include "readline/history.h"
