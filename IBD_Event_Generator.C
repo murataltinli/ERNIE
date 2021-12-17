@@ -86,7 +86,7 @@ void IBD_Event_Generator
       ++b[p];
 
       x = distribution(generator) * (xmax - xmin) + xmin;
-      y = distribution(generator) * RAFlux(xmin,5,power,f5,f8,f9,f1) * IBDSigmaTot0(xmax);
+      y = distribution(generator) * RAFlux(3.4,5,power,f5,f8,f9,f1) * IBDSigmaTot0(4);
       phi_e = distribution(generator) * 2 * M_PI;
 
       if(b[p]==b[1] && p>1)
