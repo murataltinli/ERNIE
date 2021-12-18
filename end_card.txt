@@ -6,7 +6,7 @@ Seed= 1
 # number of events for U235
 N= 10000
 
-# reactor power (MW)
+# reactor thermal power (MW)
 Power= 3200
 
 # fission fractions
