@@ -84,43 +84,4 @@ double RAFlux(double *E_NU /*MeV*/, double *Par)
   return RAFlux(E_nu, par); 
 }
 
-// reactor antineutrino flux at the detector
-double DFlux(double param = 0)
-{
-  double d = 50; // m
-  double csarea = 1; // m2
-  double xmax = 8; //MeV
-  double xmin = 1.806; //MeV
-  int steps = 25;
-  double stepsize = (xmax - xmin) / steps ; // MeV
-
-  double dFlux0, dFlux5, dFlux8, dFlux9, dFlux1;
-  double R0, R5, R8, R9, R1; 
-
-  for(int i = 0; i<steps; ++i)
-  {
-    
-    dFlux5 += RAFlux( i * stepsize + xmin, 5);
-    dFlux8 += RAFlux( i * stepsize + xmin, 8);
-    dFlux9 += RAFlux( i * stepsize + xmin, 9);
-    dFlux1 += RAFlux( i * stepsize + xmin, 1);
-  
-  }
-
-  dFlux0 = dFlux5 + dFlux8 + dFlux9 + dFlux1;
-
-  R5 = dFlux5  * csarea / (4*M_PI*pow(d,2));
-  R8 = dFlux8  * csarea / (4*M_PI*pow(d,2));
-  R9 = dFlux9  * csarea / (4*M_PI*pow(d,2));
-  R1 = dFlux1  * csarea / (4*M_PI*pow(d,2));
-  R0 = dFlux0  * csarea / (4*M_PI*pow(d,2));
-
-  if (param == 5){return R5;} // U235
-  if (param == 8){return R8;} // U238
-  if (param == 9){return R9;} // Pu239
-  if (param == 1){return R1;} // Pu241
-  if (param == 0){return R0;} // Total
-  
-  else{return 0;}
-}
 #endif
