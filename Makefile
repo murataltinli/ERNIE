@@ -1,8 +1,8 @@
 CC = gcc
 CFLAGS = -Wall `root-config --cflags`
-LIBS = `root-config --glibs` -lstdc++ \
-lib/libHepMC3-static.a
-INCLUDES = -I./include
+LIBS = `root-config --glibs` -lHepMC3 -lstdc++ \
+-Wl,-rpath $(HEPMC3_DIR)/lib
+INCLUDES = -I./include -I$(HEPMC3_DIR)/include
 INPUT = Generator.C
 OUTPUT = Generator
 
