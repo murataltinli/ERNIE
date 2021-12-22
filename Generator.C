@@ -3,9 +3,6 @@
 #include <iostream>
 #include <fstream>
 
-#include "readline/readline.h"
-#include "readline/history.h"
-
 using namespace std;
 
 int main(int argc, char** argv)
@@ -14,10 +11,18 @@ int main(int argc, char** argv)
   bool ibd;
   const char* rootFileName = "Reactor_Antineutrino_IBD_Events.root";
   const char* hepmc3FileName = "Reactor_Antineutrino_IBD_Events.hepmc3";
-  const char* cardFileName = "default_card.txt";
+  const char* cardFileName;
   double power; // reactor power (W)
   double f5, f8, f9, f1; // fission fractions
-
+  
+  if(argc==1)
+  {
+    cout << "Error: missing argument: parameter card filename." << endl
+         << "Usage: ./Generator <parameter_card_filename> "
+         << "<root_output_filename> <hepmc3_output_filename>" << endl
+         << "Output filename arguments are optional. If they are not specified default output filenames will be used." << endl;
+    return 0;
+  }
   if(argc>1){cardFileName=argv[1];}
   if(argc>2){rootFileName=argv[2];}
   if(argc>3){hepmc3FileName=argv[3];}
@@ -44,13 +49,16 @@ int main(int argc, char** argv)
       else if(name == "Pu241"){f1=stof(value);}
       else if(name == "IBD"){ibd=stoi(value);}
     }
-    cout << "Generating Events..." << endl;
+    
+    cout << "Using parameters from the file: " << cardFileName << endl;
+    
     if(ibd==0)
     {
       if(strcmp(rootFileName, "Reactor_Antineutrino_IBD_Events.root") == 0 && argc < 3)
       {
         rootFileName = "Reactor_Antineutrino_Events.root";
       }
+      cout << "Generating Events..." << endl;
       Reactor_Antineutrino_Generator(n,seed,rootFileName,power,f5,f8,f9,f1);
       cout << "Generated events are written into the file:" << endl
            << "=> " << rootFileName << endl;
@@ -58,6 +66,7 @@ int main(int argc, char** argv)
     }
     else
     {
+      cout << "Generating Events..." << endl;
       IBD_Event_Generator(n,seed,rootFileName,hepmc3FileName,power,f5,f8,f9,f1);
       cout << "Generated events are written into the files:" << endl
            << "=> " << rootFileName << endl
