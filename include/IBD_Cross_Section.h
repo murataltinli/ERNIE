@@ -1,12 +1,3 @@
-/*
-  Vogel, P., and J. F. Beacom. “Angular Distribution of Neutron Inverse Beta Decay,
-   ν ¯ e + p → e + + n.” Physical Review D 60, no. 5 (July 27, 1999): 053003.
-    https://doi.org/10.1103/PhysRevD.60.053003.
-
-  Vincent Fischer. Beta-decay emitted electronic antineutrinos 
-   as a tool for unsolved problems in neutrino oscillation physics.
-    Nuclear Experiment [nucl-ex]. Université Pierre et Marie Curie - Paris VI, 2015.
-*/
 #ifndef IBD_Cross_Section
 #define IBD_Cross_Section
 

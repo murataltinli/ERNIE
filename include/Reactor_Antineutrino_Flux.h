@@ -1,18 +1,3 @@
-/*
-Mueller, Th A., D. Lhuillier, M. Fallot, A. Letourneau, S. Cormon, M. Fechner, L. Giot, et al.
- “Improved Predictions of Reactor Antineutrino Spectra.” Physical Review C 83,
-  no. 5 (May 23, 2011): 054615. https://doi.org/10.1103/PhysRevC.83.054615.
-
-Wen, Liang-Jian, Jun Cao, and Yi-Fang Wang. “Reactor Neutrino Experiments: Present and Future.”
- Annual Review of Nuclear and Particle Science 67,
-  no. 1 (October 12, 2017): 183–211. https://doi.org/10.1146/annurev-nucl-101916-123318.
-
-Bernstein, A., G. Baldwin, B. Boyer, M. Goodman, J. Learned, J. Lund, D. Reyna, and R. Svoboda.
- “Nuclear Security Applications of Antineutrino Detectors: Current Capabilities and Future Prospects.”
-  Science & Global Security 18, no. 3 (December 10, 2010): 127–92.
-   https://doi.org/10.1080/08929882.2010.529785.
-*/
-
 #ifndef Reactor_Antineutrino_Flux
 #define Reactor_Antineutrino_Flux
 
