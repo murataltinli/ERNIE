@@ -20,4 +20,4 @@ clean:
 install:
 	@cp $(OUTPUT) /usr/bin
 
-.PHONY: clean install
+.PHONY: clean install check
