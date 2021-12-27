@@ -17,10 +17,10 @@ int main(int argc, char** argv)
   
   if(argc==1)
   {
-    cout << "Error: missing argument: parameter card filename." << endl
-         << "Usage: ./Generator <parameter_card_filename> "
+    cout << "\033[1;31mError:\033[0m missing argument: parameter card filename." << endl
+         << "\033[1;36mUsage:\033[0m ./Generator <parameter_card_filename> "
          << "<root_output_filename> <hepmc3_output_filename>" << endl
-         << "Output filename arguments are optional. If they are not specified default output filenames will be used." << endl;
+         << "\033[1;33mNote:\033[0m Output filename arguments are optional. If they are not specified default output filenames will be used." << endl;
     return 0;
   }
   if(argc>1){cardFileName=argv[1];}
@@ -76,6 +76,6 @@ int main(int argc, char** argv)
   }
   else 
   {
-    cerr << "Couldn't open card file for reading.\n";
+    cerr << "\033[1;31mError:\033[0m Couldn't open card file for reading.\n";
   }
 }

@@ -11,7 +11,7 @@ $(OUTPUT): check
 
 check:
 	@if [ ! -d "$(HEPMC3_DIR)" ];\
-	 then echo "\033[1;35mError:\033[0m HEPMC3_DIR path is not set.\n\
+	 then echo "\033[1;31mError:\033[0m HEPMC3_DIR path is not set.\n\
 \033[1;36mSolution:\033[0m Set HEPMC3_DIR as the HepMC3 installation directory and run make again."; fi
 
 clean:
