@@ -37,6 +37,7 @@ int main(int argc, char** argv)
       {
         continue;
       }
+      line.erase(remove(line.begin(), line.end(), ' '), line.end());
       auto delimiterPos = line.find("=");
       auto name = line.substr(0, delimiterPos);
       auto value = line.substr(delimiterPos + 1);
