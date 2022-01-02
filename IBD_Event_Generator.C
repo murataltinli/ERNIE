@@ -118,8 +118,8 @@ void IBD_Event_Generator
         GenEvent evt(Units::MEV,Units::CM);
         GenParticlePtr p1 = make_shared<GenParticle>(FourVector(0.0, 0.0, 0.0, 938.2720813), 2212,  4); // proton
         GenParticlePtr p2 = make_shared<GenParticle>(FourVector(0.0, 0.0, x, x), -12, 4); // antineutrino
-        GenParticlePtr p3 = make_shared<GenParticle>(FourVector(px_n, py_n, pz_n, E_n), 2112, 201); // neutron
-        GenParticlePtr p4 = make_shared<GenParticle>(FourVector(px_e, py_e, pz_e, E_e), -11, 201); // positron
+        GenParticlePtr p3 = make_shared<GenParticle>(FourVector(px_n, py_n, pz_n, E_n), 2112, 1); // neutron
+        GenParticlePtr p4 = make_shared<GenParticle>(FourVector(px_e, py_e, pz_e, E_e), -11, 1); // positron
 
         GenVertexPtr v1 = std::make_shared<GenVertex>();
         v1->add_particle_in(p1);
