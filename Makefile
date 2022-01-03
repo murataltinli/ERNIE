@@ -9,15 +9,10 @@ OUTPUT = Generator
 $(OUTPUT): check
 	@$(CC) $(INPUT) -o $(OUTPUT) $(CFLAGS) $(INCLUDES) $(LIBS) 
 
-check: check2
+check:
 	@if [ ! -d "$(HEPMC3_DIR)" ];\
 	 then echo "\033[1;31mError:\033[0m HEPMC3_DIR path is not set.\n\
 \033[1;36mSolution:\033[0m Set HEPMC3_DIR as the HepMC3 installation directory and run make again."; fi
-
-check2:
-	@if [ ! -d "$(ROOTSYS)" ];\
-	 then echo "\033[1;31mError:\033[0m ROOTSYS path is not set.\n\
-\033[1;36mSolution:\033[0m Set ROOTSYS as the ROOT installation directory and run make again."; fi
 
 clean:
 	@rm -f $(OUTPUT)
