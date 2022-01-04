@@ -11,7 +11,7 @@ int main(int argc, char** argv)
   bool ibd;
   const char* rootFileName = "Reactor_Antineutrino_IBD_Events.root";
   const char* hepmc3FileName = "Reactor_Antineutrino_IBD_Events.hepmc3";
-  const char* cardFileName;
+  const char* cardFileName = nullptr;
   double power; // reactor power (W)
   double f5, f8, f9, f1; // fission fractions
   
