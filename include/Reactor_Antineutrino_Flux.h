@@ -60,13 +60,4 @@ double RAFlux
   else{return 0;}
 }
 
-// reactor antineutrino flux (antineutrinos/s)
-double RAFlux(double *E_NU /*MeV*/, double *Par)
-{
-  double E_nu = E_NU[0];
-  double par = Par[0];
-
-  return RAFlux(E_nu, par); 
-}
-
 #endif
