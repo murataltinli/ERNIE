@@ -15,12 +15,4 @@ double IBDSigmaTot0(double E_nu, double par = 0)
   return sigmatot0;
 }
 
-double IBDSigmaTot0(double *E_NU0 /*MeV*/, double *Par0)
-{
-  double par = Par0[0];
-  double E_nu = E_NU0[0];
-
-  return IBDSigmaTot0(E_nu,par); 
-}
-
 #endif
