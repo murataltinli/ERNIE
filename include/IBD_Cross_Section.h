@@ -4,7 +4,7 @@
 #include <cmath>
 
 // inverse beta decay cross section (cm^2)
-double IBDSigmaTot0(double E_nu, double par = 0)
+double IBDSigmaTot0(double E_nu)
 {
   double M_p = 938.2720813; //proton mass
   double M_n = 939.5654133; //neutron mass
