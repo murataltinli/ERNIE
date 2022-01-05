@@ -1,3 +1,10 @@
+/*
+Mueller, Th A., D. Lhuillier, M. Fallot, A. Letourneau, S. Cormon, M. Fechner, L. Giot, et al.
+“Improved Predictions of Reactor Antineutrino Spectra.” 
+Physical Review C 83, no. 5 (May 23, 2011): 054615.
+https://doi.org/10.1103/PhysRevC.83.054615.
+*/
+
 #ifndef Reactor_Antineutrino_Flux
 #define Reactor_Antineutrino_Flux
 
