@@ -10,7 +10,7 @@ double RAFlux
   double par = 0, // 0: Total, 5: U235, 8: U238, 9: Pu239, 1: Pu241
   double power = 3.2 * pow(10, 9), // reactor thermal power (W)
   
-  // fission fractions
+  // fission fractions at the beginning of the reactor fuel cycle
   double f5 = 0.763, // U235
   double f8 = 0.0476, // U238
   double f9 = 0.162, // Pu239
@@ -19,6 +19,8 @@ double RAFlux
 {    
   double x5 = 0, x8 = 0, x9 = 0, x1 = 0;
   double s5, s8, s9, s1;
+
+  double mev2j = 1.6 * pow(10, -13);
   
   double Flux5, Flux8, Flux9, Flux1, Flux0;
 
@@ -27,18 +29,21 @@ double RAFlux
   double a9[6] = {6.413, -7.432, 3.535, -.8820, .1025, -.004550};
   double a1[6] = {3.251, -3.204, 1.428, -.3675, .04254, -.001896};
 
+
+
   // energies per fission (J)
-  double e5 = 201.7 * 1.6 * pow(10, -13); // U235
-  double e8 = 205 * 1.6 * pow(10, -13); // U238
-  double e9 = 210 * 1.6 * pow(10, -13); // Pu239
-  double e1 = 212.4* 1.6 * pow(10, -13); // Pu241
+  double e5 = 201.7 * mev2j; // U235
+  double e8 = 205 * mev2j; // U238
+  double e9 = 210 * mev2j; // Pu239
+  double e1 = 212.4 * mev2j; // Pu241
 
   for (int p=0; p<6; p++)
-  {  
-    x5 += a5[p] * pow(E_nu, p);
-    x8 += a8[p] * pow(E_nu, p);
-    x9 += a9[p] * pow(E_nu, p);
-    x1 += a1[p] * pow(E_nu, p);
+  { 
+    double epow = pow(E_nu,p); 
+    x5 += a5[p] * epow;
+    x8 += a8[p] * epow;
+    x9 += a9[p] * epow;
+    x1 += a1[p] * epow;
   }
 
   s5 = exp(x5);
