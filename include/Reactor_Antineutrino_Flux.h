@@ -1,4 +1,9 @@
 /*
+Wen, Liang-Jian, Jun Cao, and Yi-Fang Wang.
+“Reactor Neutrino Experiments: Present and Future.”
+Annual Review of Nuclear and Particle Science 67, no. 1 (October 12, 2017): 183–211.
+https://doi.org/10.1146/annurev-nucl-101916-123318.
+
 Mueller, Th A., D. Lhuillier, M. Fallot, A. Letourneau, S. Cormon, M. Fechner, L. Giot, et al.
 “Improved Predictions of Reactor Antineutrino Spectra.” 
 Physical Review C 83, no. 5 (May 23, 2011): 054615.
