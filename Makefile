@@ -23,7 +23,4 @@ exit 2; fi
 clean:
 	@rm -f $(OUTPUT)
 
-install:
-	@cp $(OUTPUT) /usr/bin
-
 .PHONY: clean install err1 err2
