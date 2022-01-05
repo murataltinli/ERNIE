@@ -14,6 +14,7 @@ int main(int argc, char** argv)
   const char* cardFileName = nullptr;
   double power; // reactor power (W)
   double f5, f8, f9, f1; // fission fractions
+  double gw2w = pow(10,9);
   
   if(argc==1)
   {
@@ -43,7 +44,7 @@ int main(int argc, char** argv)
       auto value = line.substr(delimiterPos + 1);
       if(name == "Seed"){seed=stoi(value);}
       else if(name == "N"){n=stoi(value);}
-      else if(name == "Power"){power=stof(value)*pow(10,6);}
+      else if(name == "Power"){power=stof(value)*gw2w;}
       else if(name == "U235"){f5=stof(value);}
       else if(name == "U238"){f8=stof(value);}
       else if(name == "Pu239"){f9=stof(value);}
