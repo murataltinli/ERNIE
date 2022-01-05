@@ -24,7 +24,7 @@ void IBD_Event_Generator
   int seed = 1,
   const char* rootFileName = "Reactor_Antineutrino_IBD_Events.root",
   const char* hepmc3FileName = "Reactor_Antineutrino_IBD_Events.hepmc3",
-  double power = 3.2 * pow(10, 9), // reactor power (W)
+  double power = 3.2 * pow(10, 9), // reactor thermal power (W)
   
   // fission fractions
   double f5 = 0.763, // U235
