@@ -30,13 +30,13 @@ double RAFlux
 (
   double E_nu, // antineutrino energy (MeV)
   double par = 0, // 0: Total, 5: U235, 8: U238, 9: Pu239, 1: Pu241
-  double power = 3.2 * pow(10, 9), // reactor thermal power (W)
+  double power, // reactor thermal power (W)
   
-  // fission fractions at the beginning of the reactor fuel cycle
-  double f5 = 0.763, // U235
-  double f8 = 0.0476, // U238
-  double f9 = 0.162, // Pu239
-  double f1 = 0.027 // Pu241  
+  // fission fractions
+  double f5, // U235
+  double f8, // U238
+  double f9, // Pu239
+  double f1  // Pu241  
 )
 {    
   double x5 = 0, x8 = 0, x9 = 0, x1 = 0;
