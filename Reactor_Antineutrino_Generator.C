@@ -12,16 +12,16 @@ using namespace std;
 
 void Reactor_Antineutrino_Generator
 (
-  int n = 10000,
-  int seed = 1,
-  const char* rootFileName = "Reactor_Antineutrino_Events.root",
-  double power = 3.2 * pow(10, 9), // reactor thermal power (W)
+  int n,
+  int seed,
+  const char* rootFileName,
+  double power, // reactor thermal power (W)
   
   // fission fractions
-  double f5 = 0.763, // U235
-  double f8 = 0.0476, // U238
-  double f9 = 0.162, // Pu239
-  double f1 = 0.027 // Pu241
+  double f5, // U235
+  double f8, // U238
+  double f9, // Pu239
+  double f1 // Pu241
 )  
 {
   double xmax = 9;
