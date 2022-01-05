@@ -15,7 +15,7 @@ void Reactor_Antineutrino_Generator
   int n = 10000,
   int seed = 1,
   const char* rootFileName = "Reactor_Antineutrino_Events.root",
-  double power = 3.2 * pow(10, 9), // reactor power (W)
+  double power = 3.2 * pow(10, 9), // reactor thermal power (W)
   
   // fission fractions
   double f5 = 0.763, // U235
