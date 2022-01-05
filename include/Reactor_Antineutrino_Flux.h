@@ -8,7 +8,7 @@ double RAFlux
 (
   double E_nu, // antineutrino energy (MeV)
   double par = 0, // 0: Total, 5: U235, 8: U238, 9: Pu239, 1: Pu241
-  double power = 3.2 * pow(10, 9), // reactor power (W)
+  double power = 3.2 * pow(10, 9), // reactor thermal power (W)
   
   // fission fractions
   double f5 = 0.763, // U235
