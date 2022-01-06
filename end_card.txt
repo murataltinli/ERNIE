@@ -19,7 +19,7 @@ N= 10000
 # reactor thermal power (GW)
 Power= 3.2
 
-# Time
+# Time (min:0 max:600)
 Time= 600
 
 # initial fission fractions
