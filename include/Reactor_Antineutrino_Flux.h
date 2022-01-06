@@ -1,22 +1,21 @@
 /****************************************************************************************************
 
-Reactor antineutrino flux formula is from:
-Wen, Liang-Jian, Jun Cao, and Yi-Fang Wang.
-“Reactor Neutrino Experiments: Present and Future.”
-Annual Review of Nuclear and Particle Science 67, no. 1 (October 12, 2017): 183–211.
-https://doi.org/10.1146/annurev-nucl-101916-123318.
-
 Antineutrino spectrum is from:
 Mueller, Th A., D. Lhuillier, M. Fallot, A. Letourneau, S. Cormon, M. Fechner, L. Giot, et al.
 “Improved Predictions of Reactor Antineutrino Spectra.”
 Physical Review C 83, no. 5 (May 23, 2011): 054615.
 https://doi.org/10.1103/PhysRevC.83.054615.
 
-Fission fractions are from:
-Bernstein, A., G. Baldwin, B. Boyer, M. Goodman, J. Learned, J. Lund, D. Reyna, and R. Svoboda. 
-“Nuclear Security Applications of Antineutrino Detectors: Current Capabilities and Future Prospects.” 
-Science & Global Security 18, no. 3 (December 10, 2010): 127–92.
-https://doi.org/10.1080/08929882.2010.529785.
+Huber, Patrick.
+“On the Determination of Anti-Neutrino Spectra from Nuclear Reactors.”
+Physical Review C 84, no. 2 (August 29, 2011): 024617.
+https://doi.org/10.1103/PhysRevC.84.024617.
+
+Energy per fission values are from:
+Ma, X. B., W. L. Zhong, L. Z. Wang, Y. X. Chen, and J. Cao.
+“Improved Calculation of the Energy Release in Neutron-Induced Fission.”
+Physical Review C 88, no. 1 (July 12, 2013): 014605.
+https://doi.org/10.1103/PhysRevC.88.014605.
 
 *****************************************************************************************************/
 
@@ -31,12 +30,18 @@ double RAFlux
   double E_nu, // antineutrino energy (MeV)
   double par, // 0: Total, 5: U235, 8: U238, 9: Pu239, 1: Pu241
   double power, // reactor thermal power (W)
-  
-  // fission fractions
-  double f5, // U235
-  double f8, // U238
-  double f9, // Pu239
-  double f1  // Pu241  
+  double time,
+
+  // fission fractions at the beginning of the reactor fuel cycle
+  double f5_i, // U235
+  double f8_i, // U238
+  double f9_i, // Pu239
+  double f1_i,  // Pu241
+  // fission fractions at the end of the reactor fuel cycle
+  double f5_f, // U235
+  double f8_f, // U238
+  double f9_f, // Pu239
+  double f1_f  // Pu241
 )
 {    
   double x5 = 0, x8 = 0, x9 = 0, x1 = 0;
@@ -46,18 +51,28 @@ double RAFlux
   
   double Flux5, Flux8, Flux9, Flux1, Flux0;
 
-  double a5[6] = {3.217, -3.111, 1.395, -.3690, .04445, -.002053};
+  double tmax = 600;
+  double tmin = 0;
+
+  // fission fractions
+  double f5 = f5_i + ((f5_f - f5_i) / (tmax - tmin)) * time; // U235
+  double f8 = f8_i + ((f8_f - f8_i) / (tmax - tmin)) * time; // U238
+  double f9 = f9_i + ((f9_f - f9_i) / (tmax - tmin)) * time; // Pu239
+  double f1 = f1_i + ((f1_f - f1_i) / (tmax - tmin)) * time; // Pu241
+
+
+  double a5[6] = {4.367, -4.577, 2.100, -.5294, .06186, -.002777};
   double a8[6] = {.4833, .1927, -.1283, -.006762, .002233, -.0001536};
-  double a9[6] = {6.413, -7.432, 3.535, -.8820, .1025, -.004550};
-  double a1[6] = {3.251, -3.204, 1.428, -.3675, .04254, -.001896};
+  double a9[6] = {4.757, -5.392, 2.563, -.6596, .07820, -.003536};
+  double a1[6] = {2.990, -2.882, 1.278, -.3343, .03905, -.001754};
 
-
+  
 
   // energies per fission (J)
-  double e5 = 201.7 * mev2j; // U235
-  double e8 = 205 * mev2j; // U238
-  double e9 = 210 * mev2j; // Pu239
-  double e1 = 212.4 * mev2j; // Pu241
+  double e5 = 202.36 * mev2j; // U235
+  double e8 = 205.99 * mev2j; // U238
+  double e9 = 211.12 * mev2j; // Pu239
+  double e1 = 214.26 * mev2j; // Pu241
 
   for (int p=0; p<6; p++)
   { 
