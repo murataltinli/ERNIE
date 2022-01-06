@@ -25,12 +25,18 @@ void IBD_Event_Generator
   const char* rootFileName,
   const char* hepmc3FileName,
   double power, // reactor thermal power (W)
+  double time,
   
-  // fission fractions
-  double f5, // U235
-  double f8, // U238
-  double f9, // Pu239
-  double f1 // Pu241
+  // fission fractions at the beginning of the reactor fuel cycle
+  double f5_i, // U235
+  double f8_i, // U238
+  double f9_i, // Pu239
+  double f1_i,  // Pu241
+  // fission fractions at the end of the reactor fuel cycle
+  double f5_f, // U235
+  double f8_f, // U238
+  double f9_f, // Pu239
+  double f1_f  // Pu241
 )  
 {
   double xmax = 9;
@@ -86,7 +92,7 @@ void IBD_Event_Generator
       ++b[p];
 
       x = distribution(generator) * (xmax - xmin) + xmin;
-      y = distribution(generator) * RAFlux(3.4,5,power,f5,f8,f9,f1) * IBDSigmaTot0(4);
+      y = distribution(generator) * RAFlux(3.4,5,power,time,f5_i,f8_i,f9_i,f1_i,f5_f,f8_f,f9_f,f1_f) * IBDSigmaTot0(4);
       phi_e = distribution(generator) * 2 * M_PI;
 
       if(b[p]==b[1] && p>1)
@@ -94,7 +100,7 @@ void IBD_Event_Generator
         break;
       }
 
-      if(y <= RAFlux(x,par[p],power,f5,f8,f9,f1) * IBDSigmaTot0(x))
+      if(y <= RAFlux(x,par[p],power,time,f5_i,f8_i,f9_i,f1_i,f5_f,f8_f,f9_f,f1_f) * IBDSigmaTot0(x))
       {    
         costheta_e = positron_Angle(x,10000000 * seed + b[p] + 1); 
         sintheta_e =  sqrt(1-pow(costheta_e,2));

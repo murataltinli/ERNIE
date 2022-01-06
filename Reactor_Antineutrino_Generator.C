@@ -16,12 +16,18 @@ void Reactor_Antineutrino_Generator
   int seed,
   const char* rootFileName,
   double power, // reactor thermal power (W)
-  
-  // fission fractions
-  double f5, // U235
-  double f8, // U238
-  double f9, // Pu239
-  double f1 // Pu241
+  double time,
+
+  // fission fractions at the beginning of the reactor fuel cycle
+  double f5_i, // U235
+  double f8_i, // U238
+  double f9_i, // Pu239
+  double f1_i,  // Pu241
+  // fission fractions at the end of the reactor fuel cycle
+  double f5_f, // U235
+  double f8_f, // U238
+  double f9_f, // Pu239
+  double f1_f  // Pu241
 )  
 {
   double xmax = 9;
@@ -58,14 +64,14 @@ void Reactor_Antineutrino_Generator
       ++b[p];
 
       x = distribution(generator) * (xmax - xmin) + xmin;
-      y = distribution(generator) * RAFlux(xmin,5,power,f5,f8,f9,f1);
+      y = distribution(generator) * RAFlux(xmin,5,power,time,f5_i,f8_i,f9_i,f1_i,f5_f,f8_f,f9_f,f1_f);
 
       if(b[p]==b[1] && p>1)
       {
         break;
       }
 
-      if(y <= RAFlux(x,par[p],power,f5,f8,f9,f1))
+      if(y <= RAFlux(x,par[p],power,time,f5_i,f8_i,f9_i,f1_i,f5_f,f8_f,f9_f,f1_f))
       {    
         t[p]->Fill();
         t0->Fill();
