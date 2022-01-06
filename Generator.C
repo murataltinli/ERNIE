@@ -63,21 +63,21 @@ int main(int argc, char** argv)
     if(f5_i+f8_i+f9_i+f1_i > 1.001 || f5_i+f8_i+f9_i+f1_i < 0.99 ||
        f5_f+f8_f+f9_f+f1_f > 1.001 || f5_f+f8_f+f9_f+f1_f < 0.99 )
     {
-      cout << "\033[1;35mWarning:\033[0m Illogical parameter values,"
+      cout << "\033[1;35mWarning:\033[0m Invalid parameter values,"
            << "please check fission fraction parameters in: " 
            << cardFileName << endl;
       return 0;
     }
     if(power <= 0)
     {
-      cout << "\033[1;31mError:\033[0m Illogical parameter value,"
+      cout << "\033[1;31mError:\033[0m Invalid parameter value,"
            << "please check reactor thermal power parameter in: " 
            << cardFileName << endl;
       return 0;
     }
     if(n <= 0)
     {
-      cout << "\033[1;31mError:\033[0m Illogical parameter value,"
+      cout << "\033[1;31mError:\033[0m Invalid parameter value,"
            << "please check number of events (N) parameter in: " 
            << cardFileName << endl;
       return 0;
