@@ -22,13 +22,13 @@ Power= 3.2
 # Time (min:0 max:600)
 Time= 600
 
-# initial fission fractions
+# initial fission fractions (Time=0)
 U235_i= 0.763
 U238_i= 0.0476
 Pu239_i= 0.162
 Pu241_i= 0.027
 
-# final fission fractions
+# final fission fractions (Time=600)
 U235_f= 0.423
 U238_f= 0.076
 Pu239_f= 0.397
