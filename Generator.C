@@ -78,7 +78,7 @@ int main(int argc, char** argv)
     else if(n <= 0)
     {
       cout << "\033[1;31mError:\033[0m Invalid parameter value,"
-           << "please check number of events (N) parameter in: " 
+           << "please check number of events parameter in: " 
            << cardFileName << endl;
       return 0;
     }

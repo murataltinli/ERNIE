@@ -86,85 +86,81 @@ void IBD_Event_Generator
     t[p]->Branch("pyn",&py_n);
     t[p]->Branch("pze",&pz_e);
     t[p]->Branch("pzn",&pz_n);
+  }
     
-    while(p > 0)
-    { 
-      ++b[p];
+  int p=0;
+  while(true)
+  { 
+    ++p;
+    if(p==5){p=1;}
+    ++b[p];
 
-      x = distribution(generator) * (xmax - xmin) + xmin;
-      y = distribution(generator) * RAFlux(3.4,5,power,time,f5_i,f8_i,f9_i,f1_i,f5_f,f8_f,f9_f,f1_f) * IBDSigmaTot0(4);
-      phi_e = distribution(generator) * 2 * M_PI;
+    x = distribution(generator) * (xmax - xmin) + xmin;
+    y = distribution(generator) 
+        * RAFlux(3.4,5,power,time,f5_i,f8_i,f9_i,f1_i,f5_f,f8_f,f9_f,f1_f) * IBDSigmaTot0(4);
+    phi_e = distribution(generator) * 2 * M_PI;
 
-      if(b[p]==b[1] && p>1)
+    if(y <= RAFlux(x,par[p],power,time,f5_i,f8_i,f9_i,f1_i,f5_f,f8_f,f9_f,f1_f) * IBDSigmaTot0(x))
+    {    
+      costheta_e = positron_Angle(x,10000000 * seed + b[p] + 1); 
+      sintheta_e =  sqrt(1-pow(costheta_e,2));
+      E_e = positron_Energy(x,costheta_e);
+      KE_e = E_e - m_e;
+      p_e = positron_Momentum(x,costheta_e);
+      E_n =  neutron_Energy(x,costheta_e);
+      KE_n = neutron_Kinetic_Energy(x,costheta_e);
+      p_n = neutron_Momentum(x,costheta_e);
+      costheta_n = neutron_Angle(x,costheta_e);
+      pT_e = p_e * sintheta_e;
+      pz_e = p_e * costheta_e;
+      pz_n = p_n * costheta_n;
+      px_e = pT_e * cos(phi_e);
+      py_e = pT_e * sin(phi_e);
+      px_n = - px_e;
+      py_n = - py_e;
+      t[p]->Fill();
+      t0->Fill();
+
+      GenEvent evt(Units::MEV,Units::CM);
+      GenParticlePtr p1 = make_shared<GenParticle>(
+        FourVector(0.0, 0.0, 0.0, 938.2720813), 2212,  4); // proton
+      GenParticlePtr p2 = make_shared<GenParticle>(
+        FourVector(0.0, 0.0, x, x), -12, 4); // antineutrino
+      GenParticlePtr p3 = make_shared<GenParticle>(
+        FourVector(px_n, py_n, pz_n, E_n), 2112, 1); // neutron
+      GenParticlePtr p4 = make_shared<GenParticle>(
+        FourVector(px_e, py_e, pz_e, E_e), -11, 1); // positron
+
+      GenVertexPtr v1 = std::make_shared<GenVertex>();
+      v1->add_particle_in(p1);
+      v1->add_particle_in(p2);
+      v1->add_particle_out(p3);
+      v1->add_particle_out(p4);
+
+      evt.add_vertex(v1);
+
+      shared_ptr<GenCrossSection> cross_section = make_shared<GenCrossSection>();
+      evt.add_attribute("GenCrossSection",cross_section);
+
+      cross_section->set_cross_section(IBDSigmaTot0(x),0);
+        
+      evt.set_event_number(g);
+      g++;
+      asc.write_event(evt);
+      
+      ++m;
+      if(m==n)
       {
         break;
       }
-
-      if(y <= RAFlux(x,par[p],power,time,f5_i,f8_i,f9_i,f1_i,f5_f,f8_f,f9_f,f1_f) * IBDSigmaTot0(x))
-      {    
-        costheta_e = positron_Angle(x,10000000 * seed + b[p] + 1); 
-        sintheta_e =  sqrt(1-pow(costheta_e,2));
-        E_e = positron_Energy(x,costheta_e);
-        KE_e = E_e - m_e;
-        p_e = positron_Momentum(x,costheta_e);
-        E_n =  neutron_Energy(x,costheta_e);
-        KE_n = neutron_Kinetic_Energy(x,costheta_e);
-        p_n = neutron_Momentum(x,costheta_e);
-        costheta_n = neutron_Angle(x,costheta_e);
-        pT_e = p_e * sintheta_e;
-        pz_e = p_e * costheta_e;
-        pz_n = p_n * costheta_n;
-        px_e = pT_e * cos(phi_e);
-        py_e = pT_e * sin(phi_e);
-        px_n = - px_e;
-        py_n = - py_e;
-        t[p]->Fill();
-        t0->Fill();
-
-        GenEvent evt(Units::MEV,Units::CM);
-        GenParticlePtr p1 = make_shared<GenParticle>(
-          FourVector(0.0, 0.0, 0.0, 938.2720813), 2212,  4); // proton
-        GenParticlePtr p2 = make_shared<GenParticle>(
-          FourVector(0.0, 0.0, x, x), -12, 4); // antineutrino
-        GenParticlePtr p3 = make_shared<GenParticle>(
-          FourVector(px_n, py_n, pz_n, E_n), 2112, 1); // neutron
-        GenParticlePtr p4 = make_shared<GenParticle>(
-          FourVector(px_e, py_e, pz_e, E_e), -11, 1); // positron
-
-        GenVertexPtr v1 = std::make_shared<GenVertex>();
-        v1->add_particle_in(p1);
-        v1->add_particle_in(p2);
-        v1->add_particle_out(p3);
-        v1->add_particle_out(p4);
-
-        evt.add_vertex(v1);
-
-        shared_ptr<GenCrossSection> cross_section = make_shared<GenCrossSection>();
-        evt.add_attribute("GenCrossSection",cross_section);
-
-        cross_section->set_cross_section(IBDSigmaTot0(x),0);
-
-        
-        evt.set_event_number(g);
-        g++;
-        asc.write_event(evt);
-      
-
-        if(p==1)
-        {
-          ++m;
-          if(m==n)
-          {
-            break;
-          }
-        } 
-      }
-      else
-      {
-        continue;
-      }
+         
+    }
+    else
+    {
+      continue;
     }
   }
+  
 
   // Open a ROOT file
   TFile f(rootFileName,"RECREATE");

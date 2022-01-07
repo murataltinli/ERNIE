@@ -35,7 +35,6 @@ void Reactor_Antineutrino_Generator
   double m = 0;
   double x, y;
 
-  double b[5] = {};
   int par[5] =   {0, // Total
                   5, // U235
                   8, // U238
@@ -58,38 +57,33 @@ void Reactor_Antineutrino_Generator
   for(int p = 0; p < 5; ++p)
   {
     t[p]->Branch("Enu",&x);
+  }  
+  
+  int p = 0;
+  while(true)
+  { 
+    ++p;
+    if(p==5){p=1;}
+
+    x = distribution(generator) * (xmax - xmin) + xmin;
+    y = distribution(generator) * RAFlux(xmin,5,power,time,f5_i,f8_i,f9_i,f1_i,f5_f,f8_f,f9_f,f1_f);
     
-    while(p > 0)
-    { 
-      ++b[p];
-
-      x = distribution(generator) * (xmax - xmin) + xmin;
-      y = distribution(generator) * RAFlux(xmin,5,power,time,f5_i,f8_i,f9_i,f1_i,f5_f,f8_f,f9_f,f1_f);
-
-      if(b[p]==b[1] && p>1)
+    if(y <= RAFlux(x,par[p],power,time,f5_i,f8_i,f9_i,f1_i,f5_f,f8_f,f9_f,f1_f))
+    {    
+      t[p]->Fill();
+      t0->Fill();
+        
+      ++m;
+      if(m==n)
       {
         break;
-      }
-
-      if(y <= RAFlux(x,par[p],power,time,f5_i,f8_i,f9_i,f1_i,f5_f,f8_f,f9_f,f1_f))
-      {    
-        t[p]->Fill();
-        t0->Fill();
-      
-        if(p==1)
-        {
-          ++m;
-          if(m==n)
-          {
-            break;
-          }
-        } 
-      }
-      else
-      {
-        continue;
-      }
+      }        
     }
+    else
+    {
+      continue;
+    }
+    
   }
 
   // Open a ROOT file

@@ -13,7 +13,7 @@
 # random generator seed
 Seed= 1
 
-# number of events for U235
+# number of events
 N= 10000
 
 # reactor thermal power (GW)
