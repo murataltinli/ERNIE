@@ -68,17 +68,24 @@ int main(int argc, char** argv)
            << cardFileName << endl;
       return 0;
     }
-    if(power <= 0)
+    else if(power <= 0)
     {
       cout << "\033[1;31mError:\033[0m Invalid parameter value,"
            << "please check reactor thermal power parameter in: " 
            << cardFileName << endl;
       return 0;
     }
-    if(n <= 0)
+    else if(n <= 0)
     {
       cout << "\033[1;31mError:\033[0m Invalid parameter value,"
            << "please check number of events (N) parameter in: " 
+           << cardFileName << endl;
+      return 0;
+    }
+    else if(time < 0 || time > 600)
+    {
+      cout << "\033[1;31mError:\033[0m Invalid parameter value,"
+           << "please check time parameter in: " 
            << cardFileName << endl;
       return 0;
     }
