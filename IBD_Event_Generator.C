@@ -46,7 +46,7 @@ void IBD_Event_Generator
   double x, y, costheta_e, sintheta_e, costheta_n, phi_e,
   E_n, KE_n, E_e, KE_e, p_n, p_e, px_e, px_n, py_e, py_n, pz_e, pz_n, pT_e;
 
-  double b[5] = {};
+  int seed2 = seed + 1;
   int g = 0;
   int par[5] =   {0, // Total
                   5, // U235
@@ -88,12 +88,12 @@ void IBD_Event_Generator
     t[p]->Branch("pzn",&pz_n);
   }
     
-  int p=0;
+  int p = 0;
   while(true)
   { 
     ++p;
     if(p==5){p=1;}
-    ++b[p];
+    ++seed2;
 
     x = distribution(generator) * (xmax - xmin) + xmin;
     y = distribution(generator) 
@@ -102,7 +102,7 @@ void IBD_Event_Generator
 
     if(y <= RAFlux(x,par[p],power,time,f5_i,f8_i,f9_i,f1_i,f5_f,f8_f,f9_f,f1_f) * IBDSigmaTot0(x))
     {    
-      costheta_e = positron_Angle(x,10000000 * seed + b[p] + 1); 
+      costheta_e = positron_Angle(x,seed2); 
       sintheta_e =  sqrt(1-pow(costheta_e,2));
       E_e = positron_Energy(x,costheta_e);
       KE_e = E_e - m_e;
@@ -153,7 +153,6 @@ void IBD_Event_Generator
       {
         break;
       }
-         
     }
     else
     {
@@ -161,7 +160,6 @@ void IBD_Event_Generator
     }
   }
   
-
   // Open a ROOT file
   TFile f(rootFileName,"RECREATE");
     
@@ -172,5 +170,4 @@ void IBD_Event_Generator
   
   // Closing the ROOT file
   f.Close();
-
 }

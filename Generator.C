@@ -99,7 +99,8 @@ int main(int argc, char** argv)
         rootFileName = "Reactor_Antineutrino_Events.root";
       }
       cout << "Generating Events..." << endl;
-      Reactor_Antineutrino_Generator(n,seed,rootFileName,power,time,f5_i,f8_i,f9_i,f1_i,f5_f,f8_f,f9_f,f1_f);
+      Reactor_Antineutrino_Generator(
+        n,seed,rootFileName,power,time,f5_i,f8_i,f9_i,f1_i,f5_f,f8_f,f9_f,f1_f);
       cout << "Generated events are written into the file:" << endl
            << "=> " << rootFileName << endl;
       return 0;
@@ -107,7 +108,8 @@ int main(int argc, char** argv)
     else
     {
       cout << "Generating Events..." << endl;
-      IBD_Event_Generator(n,seed,rootFileName,hepmc3FileName,power,time,f5_i,f8_i,f9_i,f1_i,f5_f,f8_f,f9_f,f1_f);
+      IBD_Event_Generator(
+        n,seed,rootFileName,hepmc3FileName,power,time,f5_i,f8_i,f9_i,f1_i,f5_f,f8_f,f9_f,f1_f);
       cout << "Generated events are written into the files:" << endl
            << "=> " << rootFileName << endl
            << "=> " << hepmc3FileName << endl;
