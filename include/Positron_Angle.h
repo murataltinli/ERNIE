@@ -51,7 +51,6 @@ double positron_Angle(double E_nu, int seed = 1)
     if(y <= positron_dist(E_nu,x))
     {
       return x;
-      break;
     }
     else
     {
