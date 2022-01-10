@@ -12,27 +12,16 @@ using namespace std;
 
 void Reactor_Antineutrino_Generator
 (
-  int n,
+  int numberOfEvents,
   int seed,
   const char* rootFileName,
   double power, // reactor thermal power (W)
   double time,
-
-  // fission fractions at the beginning of the reactor fuel cycle
-  double f5_i, // U235
-  double f8_i, // U238
-  double f9_i, // Pu239
-  double f1_i,  // Pu241
-  // fission fractions at the end of the reactor fuel cycle
-  double f5_f, // U235
-  double f8_f, // U238
-  double f9_f, // Pu239
-  double f1_f  // Pu241
+  FissionFraction fFrac
 )  
 {
   double xmax = 9;
   double xmin = 1.806;
-  double m = 0;
   double x, y;
 
   int par[5] =   {0, // Total
@@ -44,7 +33,7 @@ void Reactor_Antineutrino_Generator
   // pseudorandom number generator
   default_random_engine generator;
   generator.seed(seed);
-  uniform_real_distribution<double> distribution(0.0,1.0);
+  uniform_real_distribution<double> uniformDist(0.0,1.0);
 
   TTree* t0 = new TTree("Total","E_nu");
   TTree* t5 = new TTree("U235","E_nu");
@@ -52,49 +41,38 @@ void Reactor_Antineutrino_Generator
   TTree* t9 = new TTree("Pu239","E_nu");
   TTree* t1 = new TTree("Pu241","E_nu");
 
-  TTree *t[5] = {t0, t5, t8, t9, t1};
+  TTree *tree[5] = {t0, t5, t8, t9, t1};
 
-  for(int p = 0; p < 5; ++p)
+  for(int i = 0; i < 5; ++i)
   {
-    t[p]->Branch("Enu",&x);
+    tree[i]->Branch("Enu",&x);
   }  
   
-  int p = 0;
-  while(true)
+  double counter = 0;
+  while(counter<numberOfEvents)
   { 
-    ++p;
-    if(p==5){p=1;}
-
-    x = distribution(generator) * (xmax - xmin) + xmin;
-    y = distribution(generator) * RAFlux(xmin,5,power,time,f5_i,f8_i,f9_i,f1_i,f5_f,f8_f,f9_f,f1_f);
-    
-    if(y <= RAFlux(x,par[p],power,time,f5_i,f8_i,f9_i,f1_i,f5_f,f8_f,f9_f,f1_f))
-    {    
-      t[p]->Fill();
-      t0->Fill();
-        
-      ++m;
-      if(m==n)
-      {
-        break;
-      }        
-    }
-    else
+    for(int i = 1; i < 5; i++)
     {
-      continue;
+      x = uniformDist(generator) * (xmax - xmin) + xmin;
+      y = uniformDist(generator) * RAFlux(xmin,5,power,time,fFrac);
+      
+      if(y <= RAFlux(x,par[i],power,time,fFrac))
+      {    
+        ++counter;
+
+        tree[i]->Fill();
+        t0->Fill();       
+      }
     }
-    
   }
 
-  // Open a ROOT file
-  TFile f(rootFileName,"RECREATE");
+  TFile file(rootFileName,"RECREATE");
     
-  for(int p = 0; p < 5; ++p)
+  for(int i = 0; i < 5; ++i)
   {
-    t[p]->Write();
+    tree[i]->Write();
   }
-  
-  // Closing the ROOT file
-  f.Close();
+
+  file.Close();
 
 }
