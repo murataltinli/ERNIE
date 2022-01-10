@@ -89,7 +89,7 @@ void IBD_Event_Generator
   double counter = 0;
   while(counter<numberOfEvents)
   { 
-    for(int i = 1; i < 5;i++)
+    for(int i = 1; i < 5; i++)
     {
       x = uniformDist(generator) * (xmax - xmin) + xmin;
       y = uniformDist(generator) * RAFlux(3.4,5,power,time,fFrac) * IBDSigmaTot0(4);
