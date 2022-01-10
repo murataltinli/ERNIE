@@ -21,4 +21,4 @@ endif
 clean:
 	@rm -f $(OUTPUT)
 
-.PHONY: cleanS
+.PHONY: clean
