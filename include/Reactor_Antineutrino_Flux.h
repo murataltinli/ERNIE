@@ -31,17 +31,7 @@ double RAFlux
   double par, // 0: Total, 5: U235, 8: U238, 9: Pu239, 1: Pu241
   double power, // reactor thermal power (W)
   double time,
-
-  // fission fractions at the beginning of the reactor fuel cycle
-  double f5_i, // U235
-  double f8_i, // U238
-  double f9_i, // Pu239
-  double f1_i,  // Pu241
-  // fission fractions at the end of the reactor fuel cycle
-  double f5_f, // U235
-  double f8_f, // U238
-  double f9_f, // Pu239
-  double f1_f  // Pu241
+  FissionFraction fFrac
 )
 {    
   double x5 = 0, x8 = 0, x9 = 0, x1 = 0;
@@ -55,11 +45,10 @@ double RAFlux
   double tmin = 0;
 
   // fission fractions
-  double f5 = f5_i + ((f5_f - f5_i) / (tmax - tmin)) * time; // U235
-  double f8 = f8_i + ((f8_f - f8_i) / (tmax - tmin)) * time; // U238
-  double f9 = f9_i + ((f9_f - f9_i) / (tmax - tmin)) * time; // Pu239
-  double f1 = f1_i + ((f1_f - f1_i) / (tmax - tmin)) * time; // Pu241
-
+  double f5 = fFrac.U235_i + ((fFrac.U235_f - fFrac.U235_i) / (tmax - tmin)) * time; // U235
+  double f8 = fFrac.U238_i + ((fFrac.U238_f - fFrac.U238_i) / (tmax - tmin)) * time; // U238
+  double f9 = fFrac.Pu239_i + ((fFrac.Pu239_f - fFrac.Pu239_i) / (tmax - tmin)) * time; // Pu239
+  double f1 = fFrac.Pu241_i + ((fFrac.Pu241_f - fFrac.Pu241_i) / (tmax - tmin)) * time; // Pu241
 
   double a5[6] = {4.367, -4.577, 2.100, -.5294, .06186, -.002777};
   double a8[6] = {.4833, .1927, -.1283, -.006762, .002233, -.0001536};
