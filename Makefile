@@ -6,20 +6,19 @@ INCLUDES = -I./include -I$(HEPMC3_DIR)/include
 INPUT = Generator.C
 OUTPUT = Generator
 
-$(OUTPUT): checkroot checkhepmc3
-	@$(CC) $(INPUT) -o $(OUTPUT) $(CFLAGS) $(INCLUDES) $(LIBS) 
 
-checkhepmc3:
+$(OUTPUT):
 ifndef HEPMC3_DIR
 	$(error HEPMC3_DIR is undefined, please set it as HEPMC3 installation directory and run make again)
 endif
 
-checkroot:
 ifndef ROOTSYS
 	$(error Can't find ROOT, make sure ROOT is installed)
 endif
 
+	$(CC) $(INPUT) -o $(OUTPUT) $(CFLAGS) $(INCLUDES) $(LIBS) 
+
 clean:
 	@rm -f $(OUTPUT)
 
-.PHONY: clean checkhepmc3 checkroot
+.PHONY: cleanS
