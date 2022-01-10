@@ -57,33 +57,33 @@ void IBD_Event_Generator
   generator.seed(seed);
   uniform_real_distribution<double> uniformDist(0.0,1.0);
 
-  TTree* t0 = new TTree("Total","E_nu");
-  TTree* t5 = new TTree("U235","E_nu");
-  TTree* t8 = new TTree("U238","E_nu");
-  TTree* t9 = new TTree("Pu239","E_nu");
-  TTree* t1 = new TTree("Pu241","E_nu");
+  TTree* tree0 = new TTree("Total","E_nu");
+  TTree* tree5 = new TTree("U235","E_nu");
+  TTree* tree8 = new TTree("U238","E_nu");
+  TTree* tree9 = new TTree("Pu239","E_nu");
+  TTree* tree1 = new TTree("Pu241","E_nu");
 
-  TTree *t[5] = {t0, t5, t8, t9, t1};
+  TTree *tree[5] = {tree0, tree5, tree8, tree9, tree1};
 
   WriterAscii asc(hepmc3FileName);
 
   for(int i = 0; i < 5; ++i)
   {
-    t[i]->Branch("Enu",&x);
-    t[i]->Branch("cose",&costheta_e);
-    t[i]->Branch("cosn",&costheta_n);
-    t[i]->Branch("Ee",&E_e);
-    t[i]->Branch("Te",&KE_e);
-    t[i]->Branch("En",&E_n);
-    t[i]->Branch("Tn",&KE_n);
-    t[i]->Branch("pe",&p_e);
-    t[i]->Branch("pn",&p_n);
-    t[i]->Branch("pxe",&px_e);
-    t[i]->Branch("pxn",&px_n);
-    t[i]->Branch("pye",&py_e);
-    t[i]->Branch("pyn",&py_n);
-    t[i]->Branch("pze",&pz_e);
-    t[i]->Branch("pzn",&pz_n);
+    tree[i]->Branch("Enu",&x);
+    tree[i]->Branch("cose",&costheta_e);
+    tree[i]->Branch("cosn",&costheta_n);
+    tree[i]->Branch("Ee",&E_e);
+    tree[i]->Branch("Te",&KE_e);
+    tree[i]->Branch("En",&E_n);
+    tree[i]->Branch("Tn",&KE_n);
+    tree[i]->Branch("pe",&p_e);
+    tree[i]->Branch("pn",&p_n);
+    tree[i]->Branch("pxe",&px_e);
+    tree[i]->Branch("pxn",&px_n);
+    tree[i]->Branch("pye",&py_e);
+    tree[i]->Branch("pyn",&py_n);
+    tree[i]->Branch("pze",&pz_e);
+    tree[i]->Branch("pzn",&pz_n);
   }
 
   double counter = 0;
@@ -116,31 +116,31 @@ void IBD_Event_Generator
         py_e = pT_e * sin(phi_e);
         px_n = - px_e;
         py_n = - py_e;
-        t[i]->Fill();
-        t0->Fill();
+        tree[i]->Fill();
+        tree0->Fill();
         
-        GenEvent evt(Units::MEV,Units::CM);
+        GenEvent event(Units::MEV,Units::CM);
         GenParticlePtr particle1 = make_shared<GenParticle>(FourVector(0.0, 0.0, 0.0, M_p), pID_p,  4);
         GenParticlePtr particle2 = make_shared<GenParticle>(FourVector(0.0, 0.0, x, x), pID_nu, 4);
         GenParticlePtr particle3 = make_shared<GenParticle>(FourVector(px_n, py_n, pz_n, E_n), pID_n, 1);
         GenParticlePtr particle4 = make_shared<GenParticle>(FourVector(px_e, py_e, pz_e, E_e), pID_e, 1);
 
-        GenVertexPtr v1 = std::make_shared<GenVertex>();
-        v1->add_particle_in(particle1);
-        v1->add_particle_in(particle2);
-        v1->add_particle_out(particle3);
-        v1->add_particle_out(particle4);
+        GenVertexPtr vertex1 = std::make_shared<GenVertex>();
+        vertex1->add_particle_in(particle1);
+        vertex1->add_particle_in(particle2);
+        vertex1->add_particle_out(particle3);
+        vertex1->add_particle_out(particle4);
 
-        evt.add_vertex(v1);
+        event.add_vertex(vertex1);
 
         shared_ptr<GenCrossSection> cross_section = make_shared<GenCrossSection>();
-        evt.add_attribute("GenCrossSection",cross_section);
+        event.add_attribute("GenCrossSection",cross_section);
 
         cross_section->set_cross_section(IBDSigmaTot0(x),0);
           
-        evt.set_event_number(eventNumber);
+        event.set_event_number(eventNumber);
         eventNumber++;
-        asc.write_event(evt);
+        asc.write_event(event);
       }
     }
   }
@@ -149,7 +149,7 @@ void IBD_Event_Generator
     
   for(int i = 0; i < 5; ++i)
   {
-    t[i]->Write();
+    tree[i]->Write();
   }
 
   file.Close();

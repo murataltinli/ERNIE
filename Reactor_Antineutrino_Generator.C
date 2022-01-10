@@ -35,13 +35,13 @@ void Reactor_Antineutrino_Generator
   generator.seed(seed);
   uniform_real_distribution<double> uniformDist(0.0,1.0);
 
-  TTree* t0 = new TTree("Total","E_nu");
-  TTree* t5 = new TTree("U235","E_nu");
-  TTree* t8 = new TTree("U238","E_nu");
-  TTree* t9 = new TTree("Pu239","E_nu");
-  TTree* t1 = new TTree("Pu241","E_nu");
+  TTree* tree0 = new TTree("Total","E_nu");
+  TTree* tree5 = new TTree("U235","E_nu");
+  TTree* tree8 = new TTree("U238","E_nu");
+  TTree* tree9 = new TTree("Pu239","E_nu");
+  TTree* tree1 = new TTree("Pu241","E_nu");
 
-  TTree *tree[5] = {t0, t5, t8, t9, t1};
+  TTree *tree[5] = {tree0, tree5, tree8, tree9, tree1};
 
   for(int i = 0; i < 5; ++i)
   {
@@ -61,7 +61,7 @@ void Reactor_Antineutrino_Generator
         ++counter;
 
         tree[i]->Fill();
-        t0->Fill();       
+        tree0->Fill();       
       }
     }
   }
