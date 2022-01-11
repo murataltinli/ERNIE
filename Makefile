@@ -9,7 +9,7 @@ INPUT = Generator.cc
 OUTPUT = Generator
 
 $(OUTPUT): $(OBJECTS)
-	$(CC) $(INPUT) $(OBJECTS) -o $(OUTPUT) $(CFLAGS) $(INCLUDES) $(LIBS) && rm -f $(OBJECTS)
+	$(CC) $(INPUT) $(OBJECTS) -o $(OUTPUT) $(CFLAGS) $(INCLUDES) $(LIBS)
 
 IBD_Event_Generator.o:
 ifndef HEPMC3_DIR
