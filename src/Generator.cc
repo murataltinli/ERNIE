@@ -104,7 +104,7 @@ int main(int argc, char** argv)
       {
         rootFileName = "Reactor_Antineutrino_Events.root";
       }
-      cout << "Generating Events..." << endl;
+      cout << "Generating Antineutrinos..." << endl;
       Reactor_Antineutrino_Generate(numberOfEvents,seed,rootFileName,power,time,fFrac);
       cout << "Generated events are written into the file:" << endl
            << "=> " << rootFileName << endl;
