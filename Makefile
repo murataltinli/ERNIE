@@ -9,32 +9,33 @@ INPUT = Generator.cc
 OUTPUT = Generator
 
 $(OUTPUT): $(OBJECTS)
-ifndef ROOTSYS
-	$(error Can't find ROOT, make sure ROOT is installed)
-endif
+	$(CC) $(INPUT) $(OBJECTS) -o $(OUTPUT) $(CFLAGS) $(INCLUDES) $(LIBS) && rm -f $(OBJECTS)
 
+IBD_Event_Generator.o:
 ifndef HEPMC3_DIR
 	$(error HEPMC3_DIR is undefined, please set it as HEPMC3 installation directory and run make again)
 endif
-
-	$(CC) $(INPUT) $(OBJECTS) -o $(OUTPUT) $(CFLAGS) $(INCLUDES) $(LIBS) && rm -f $(OBJECTS)
-
-IBD_Event_Generator.o: src/IBD_Event_Generator.cc
+ifndef ROOTSYS
+	$(error Can't find ROOT, make sure ROOT is installed)
+endif
 	$(CC) $(CFLAGS) $(INCLUDES) -c src/IBD_Event_Generator.cc
 
-Reactor_Antineutrino_Generator.o: src/Reactor_Antineutrino_Generator.cc
+Reactor_Antineutrino_Generator.o:
+ifndef ROOTSYS
+	$(error Can't find ROOT, make sure ROOT is installed)
+endif
 	$(CC) $(CFLAGS) $(INCLUDES) -c src/Reactor_Antineutrino_Generator.cc
 
-Positron_Angle.o: src/Positron_Angle.cc
+Positron_Angle.o:
 	$(CC) $(CFLAGS) $(INCLUDES) -c src/Positron_Angle.cc
 
-IBD_Cross_Section.o: src/IBD_Cross_Section.cc
+IBD_Cross_Section.o:
 	$(CC) $(CFLAGS) $(INCLUDES) -c src/IBD_Cross_Section.cc
 
-Energy_Momentum.o: src/Energy_Momentum.cc
+Energy_Momentum.o:
 	$(CC) $(CFLAGS) $(INCLUDES) -c src/Energy_Momentum.cc
 
-Reactor_Antineutrino_Flux.o: src/Reactor_Antineutrino_Flux.cc
+Reactor_Antineutrino_Flux.o:
 	$(CC) $(CFLAGS) $(INCLUDES) -c src/Reactor_Antineutrino_Flux.cc
 
 clean:
