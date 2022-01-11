@@ -5,12 +5,12 @@
 
 void Reactor_Antineutrino_Generate
 (
-  int numberOfEvents,
-  int seed,
-  const char* rootFileName,
-  double power,
-  double time,
-  FissionFraction fFrac
+  int,
+  int,
+  const char*,
+  double,
+  double,
+  FissionFraction
 );
 
 #endif

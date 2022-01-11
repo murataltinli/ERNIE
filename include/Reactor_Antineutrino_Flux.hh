@@ -13,6 +13,6 @@ struct FissionFraction
   double Pu241_f;
 };
 
-double RAFlux(double E_nu, double par, double power, double time, FissionFraction fFrac);
+double RAFlux(double, double, double, double, FissionFraction);
 
 #endif

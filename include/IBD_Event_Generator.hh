@@ -5,13 +5,13 @@
 
 void IBD_Event_Generate
 (
-  int numberOfEvents,
-  int seed,
-  const char* rootFileName,
-  const char* hepmc3FileName,
-  double power,
-  double time,
-  FissionFraction fFrac
+  int,
+  int,
+  const char*,
+  const char*,
+  double ,
+  double ,
+  FissionFraction
 );
 
 #endif
