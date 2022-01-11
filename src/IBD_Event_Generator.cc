@@ -84,13 +84,13 @@ void IBD_Event_Generate
 
   double counter = 0;
   while(counter<numberOfEvents)
-  { 
+  {  
+    for(int i = 1; i < 5; i++)
+    {
       x = uniformDist(generator) * (xmax - xmin) + xmin;
       y = uniformDist(generator) * RAFlux(3.4,5,power,time,fFrac) * IBDSigmaTot0(4);
       phi_e = uniformDist(generator) * 2 * M_PI;
-    
-    for(int i = 1; i < 5; i++)
-    {
+      
       if(y <= RAFlux(x,par[i],power,time,fFrac) * IBDSigmaTot0(x))
       { 
         ++counter;
