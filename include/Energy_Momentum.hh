@@ -1,14 +1,13 @@
 #ifndef Energy_Momentum
 #define Energy_Momentum
 
-struct ParticleMass
-{
-  double p = 938.2720813; //proton mass (MeV/c^2)
-  double n = 939.5654133; //neutron mass (MeV/c^2)
-  double e = 0.511; // positron mass (MeV/c^2)
-  double M = (n + p) / 2; // average nucleon mass
-  double Delta = n - p; 
-};
+#ifndef ParticleMass
+#define M_p 938.2720813 //proton mass (MeV/c^2)
+#define M_n 939.5654133 //neutron mass (MeV/c^2)
+#define m_e 0.511 // positron mass (MeV/c^2)
+#define M ((M_n - M_p) / 2) // average nucleon mass
+#define Delta (M_n - M_p)
+#endif
 
 double positron_Energy(double, double);
 
