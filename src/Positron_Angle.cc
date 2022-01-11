@@ -31,18 +31,15 @@ double positron_dist(double E_nu, double costheta_e)
   return result;
 }
 
-double positron_Angle(double E_nu, int seed)
-{
-  default_random_engine gen;
-  gen.seed(seed); 
-  
-  uniform_real_distribution<double> d1(-1.0,1.0);
-  uniform_real_distribution<double> d2(0.0,1.0);
+double positron_Angle(double E_nu, default_random_engine& generator)
+{   
+  uniform_real_distribution<double> uniformDist1(-1.0,1.0);
+  uniform_real_distribution<double> uniformDist2(0.0,1.0);
 
   while(true)
   { 
-    double x = d1(gen);
-    double y = d2(gen) * (positron_dist(E_nu,-1));   
+    double x = uniformDist1(generator);
+    double y = uniformDist2(generator) * (positron_dist(E_nu,-1));   
     if(y <= positron_dist(E_nu,x))
     {
       return x;
