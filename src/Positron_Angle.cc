@@ -1,4 +1,5 @@
 #include "Positron_Angle.hh"
+#include "Energy_Momentum.hh"
 
 #include <random>
 #include <cmath>
@@ -10,11 +11,6 @@ double positron_dist(double E_nu, double costheta_e)
   double f = 1;
   double f2 = 3.706;
   double g = 1.26;
-  double M_p = 938.2720813; //proton mass (MeV/c^2)
-  double M_n = 939.5654133; //neutron mass (MeV/c^2)
-  double m_e = 0.511; // positron mass (MeV/c^2)
-  double Delta = M_n - M_p; 
-  double M = (M_n + M_p) / 2; // average nucleon mass
   double y = sqrt((pow(Delta,2) - pow(m_e,2)) / 2);
   double E_e = E_nu - (Delta); // positron energy (MeV)
   double p_e = sqrt(pow(E_e,2)-pow(m_e,2)); // positron momentum (MeV/c)

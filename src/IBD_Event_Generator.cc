@@ -32,8 +32,6 @@ void IBD_Event_Generate
 {
   double xmax = 9;
   double xmin = 1.806;
-  double m_e = 0.511; // positron mass (MeV/c^2)
-  double M_p = 938.2720813; // proton mass (MeV/c^2)
   double x, y, costheta_e, sintheta_e, costheta_n, phi_e,
   E_n, KE_n, E_e, KE_e, p_n, p_e, px_e, px_n, py_e, py_n, pz_e, pz_n, pT_e;
 

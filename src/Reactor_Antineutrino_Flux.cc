@@ -53,8 +53,6 @@ double RAFlux
   double a9[6] = {4.757, -5.392, 2.563, -.6596, .07820, -.003536};
   double a1[6] = {2.990, -2.882, 1.278, -.3343, .03905, -.001754};
 
-  
-
   // energies per fission (J)
   double e5 = 202.36 * mev2j; // U235
   double e8 = 205.99 * mev2j; // U238
