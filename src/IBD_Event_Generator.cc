@@ -41,7 +41,6 @@ void IBD_Event_Generate
   const int pID_n = 2112; // neutron
   const int pID_e = -11; // positron
 
-  int seed2 = seed + 1;
   int eventNumber = 0;
   int par[5] =   {0, // Total
                   5, // U235
@@ -86,18 +85,17 @@ void IBD_Event_Generate
   double counter = 0;
   while(counter<numberOfEvents)
   { 
-    for(int i = 1; i < 5; i++)
-    {
       x = uniformDist(generator) * (xmax - xmin) + xmin;
       y = uniformDist(generator) * RAFlux(3.4,5,power,time,fFrac) * IBDSigmaTot0(4);
       phi_e = uniformDist(generator) * 2 * M_PI;
-
+    
+    for(int i = 1; i < 5; i++)
+    {
       if(y <= RAFlux(x,par[i],power,time,fFrac) * IBDSigmaTot0(x))
       { 
         ++counter;
-        ++seed2;
 
-        costheta_e = positron_Angle(x,seed2); 
+        costheta_e = positron_Angle(x,generator); 
         sintheta_e =  sqrt(1-pow(costheta_e,2));
         E_e = positron_Energy(x,costheta_e);
         KE_e = E_e - m_e;
