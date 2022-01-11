@@ -5,7 +5,7 @@ LIBS = `root-config --glibs` -lHepMC3 -lstdc++ \
 INCLUDES = -I./include -I$(HEPMC3_DIR)/include
 OBJECTS = IBD_Event_Generator.o Reactor_Antineutrino_Generator.o Positron_Angle.o \
 IBD_Cross_Section.o Energy_Momentum.o Reactor_Antineutrino_Flux.o
-INPUT = Generator.cc
+INPUT = src/Generator.cc
 OUTPUT = Generator
 
 $(OUTPUT): $(OBJECTS)
