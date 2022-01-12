@@ -26,7 +26,7 @@ https://doi.org/10.1103/PhysRevC.88.014605.
 double RAFlux
 (
   double E_nu, // antineutrino energy (MeV)
-  double par, // 0: Total, 5: U235, 8: U238, 9: Pu239, 1: Pu241
+  int par, // 0: Total, 5: U235, 8: U238, 9: Pu239, 1: Pu241
   double power, // reactor thermal power (W)
   double time,
   FissionFraction fFrac
