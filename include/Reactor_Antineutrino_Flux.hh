@@ -13,6 +13,6 @@ struct FissionFraction
   double Pu241_f;
 };
 
-double RAFlux(double, double, double, double, FissionFraction);
+double RAFlux(double, int, double, double, FissionFraction);
 
 #endif
