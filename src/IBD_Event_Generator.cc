@@ -30,8 +30,8 @@ void IBD_Event_Generate
   FissionFraction fFrac
 )  
 {
-  double xmax = 9;
-  double xmin = 1.806;
+  double xmax = 9; // maximum neutrino energy 
+  double xmin = 1.806; // minimum neutrino energy 
   double x, y, costheta_e, sintheta_e, costheta_n, phi_e,
   E_n, KE_n, E_e, KE_e, p_n, p_e, px_e, px_n, py_e, py_n, pz_e, pz_n, pT_e;
 
@@ -87,7 +87,7 @@ void IBD_Event_Generate
   {  
     for(int i = 1; i < 5; i++)
     {
-      x = uniformDist(generator) * (xmax - xmin) + xmin;
+      x = uniformDist(generator) * (xmax - xmin) + xmin; // choose neutrino energy
       y = uniformDist(generator) * RAFlux(3.4,5,power,time,fFrac) * IBDSigmaTot0(4);
       phi_e = uniformDist(generator) * 2 * M_PI;
       

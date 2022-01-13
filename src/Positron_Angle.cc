@@ -8,25 +8,25 @@ using namespace std;
 
 double positron_dist(double E_nu, double costheta_e)
 {
-  double f = 1;
-  double f2 = 3.706;
-  double g = 1.26;
-  double y = sqrt((pow(Delta,2) - pow(m_e,2)) / 2);
-  double E_e = E_nu - (Delta); // positron energy (MeV)
-  double p_e = sqrt(pow(E_e,2)-pow(m_e,2)); // positron momentum (MeV/c)
-  double v_e = p_e / E_e; // positron velocity
-  double E_e1 = E_e * (1 - (E_nu / M) * (1 - v_e * costheta_e)) - (pow(y,2) / M);
-  double p_e1 = sqrt(pow(E_e1,2)-pow(m_e,2));
-  double v_e1 = p_e1 / E_e1;
-  double G_f = 1.1663787 * pow(10,-11); // Fermi coupling constant (MeV^-2)
-  double costc = 0.974; // cosinus of cabbibo angle
-  double Delta_R_inner = 0.024; // nucleus independant radiative corrections
-  double sigma0 = (pow(G_f,2) * pow(costc,2) / M_PI) * (1 +  Delta_R_inner);
-  double Gamma = 2 * (f + f2) * g * ((2 * E_e + Delta) * (1 - v_e * costheta_e) - (pow(m_e,2) / E_e))
+  const double f = 1;
+  const double f2 = 3.706;
+  const double g = 1.26;
+  const double y = sqrt((pow(Delta,2) - pow(m_e,2)) / 2);
+  const double E_e = E_nu - (Delta); // positron energy (MeV)
+  const double p_e = sqrt(pow(E_e,2)-pow(m_e,2)); // positron momentum (MeV/c)
+  const double v_e = p_e / E_e; // positron velocity
+  const double E_e1 = E_e * (1 - (E_nu / M) * (1 - v_e * costheta_e)) - (pow(y,2) / M);
+  const double p_e1 = sqrt(pow(E_e1,2)-pow(m_e,2));
+  const double v_e1 = p_e1 / E_e1;
+  const double G_f = 1.1663787 * pow(10,-11); // Fermi coupling constant (MeV^-2)
+  const double costc = 0.974; // cosinus of Cabibbo angle
+  const double Delta_R_inner = 0.024; // nucleus independant radiative corrections
+  const double sigma0 = (pow(G_f,2) * pow(costc,2) / M_PI) * (1 +  Delta_R_inner);
+  const double Gamma = 2 * (f + f2) * g * ((2 * E_e + Delta) * (1 - v_e * costheta_e) - (pow(m_e,2) / E_e))
                 + (pow(f,2) + pow(g,2)) * (Delta * (1 + v_e * costheta_e) + (pow(m_e,2) / E_e))
                 + (pow(f,2) + 3 * pow(g,2)) * ((E_e + Delta) * (1 - (1 / v_e) * costheta_e) - Delta)
                 + (pow(f,2) - pow(g,2)) * ((E_e + Delta) * (1 - (1 / v_e) * costheta_e) - Delta) * v_e * costheta_e;
-  double result = (sigma0 / 2) * ((pow(f,2) + 3 * pow(g,2)) + (pow(f,2) - pow(g,2)) * v_e1 * costheta_e) * E_e1 * p_e1
+  const double result = (sigma0 / 2) * ((pow(f,2) + 3 * pow(g,2)) + (pow(f,2) - pow(g,2)) * v_e1 * costheta_e) * E_e1 * p_e1
              - (sigma0 / 2) * (Gamma / M) * E_e * p_e;
   return result;
 }

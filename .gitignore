@@ -1,3 +1,5 @@
 *.root
 *.hepmc3
+*.o
 Generator
+.DS_Store

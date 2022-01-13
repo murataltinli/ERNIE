@@ -20,22 +20,22 @@ ifndef ROOTSYS
 endif
 	$(CC) $(CFLAGS) $(INCLUDES) -c src/IBD_Event_Generator.cc
 
-Reactor_Antineutrino_Generator.o:
+Reactor_Antineutrino_Generator.o: src/Reactor_Antineutrino_Generator.cc
 ifndef ROOTSYS
 	$(error Can't find ROOT, make sure ROOT is installed)
 endif
 	$(CC) $(CFLAGS) $(INCLUDES) -c src/Reactor_Antineutrino_Generator.cc
 
-Positron_Angle.o:
+Positron_Angle.o: src/Positron_Angle.cc include/Positron_Angle.hh include/Energy_Momentum.hh
 	$(CC) $(CFLAGS) $(INCLUDES) -c src/Positron_Angle.cc
 
-IBD_Cross_Section.o:
+IBD_Cross_Section.o: src/IBD_Cross_Section.cc include/Energy_Momentum.hh include/Energy_Momentum.hh
 	$(CC) $(CFLAGS) $(INCLUDES) -c src/IBD_Cross_Section.cc
 
-Energy_Momentum.o:
+Energy_Momentum.o: src/Energy_Momentum.cc include/Energy_Momentum.hh
 	$(CC) $(CFLAGS) $(INCLUDES) -c src/Energy_Momentum.cc
 
-Reactor_Antineutrino_Flux.o:
+Reactor_Antineutrino_Flux.o: src/Reactor_Antineutrino_Flux.cc include/Reactor_Antineutrino_Generator.hh
 	$(CC) $(CFLAGS) $(INCLUDES) -c src/Reactor_Antineutrino_Flux.cc
 
 clean:
