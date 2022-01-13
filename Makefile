@@ -8,7 +8,7 @@ IBD_Cross_Section.o Energy_Momentum.o Reactor_Antineutrino_Flux.o
 INPUT = src/Generator.cc
 OUTPUT = Generator
 
-$(OUTPUT): $(OBJECTS) include/IBD_Event_Generator.hh include/Reactor_Antineutrino_Generator.hh include/Reactor_Antineutrino_Flux.hh
+$(OUTPUT): $(OBJECTS) $(INPUT) include/IBD_Event_Generator.hh include/Reactor_Antineutrino_Generator.hh include/Reactor_Antineutrino_Flux.hh
 	$(CC) $(INPUT) $(OBJECTS) -o $(OUTPUT) $(CFLAGS) $(INCLUDES) $(LIBS)
 
 IBD_Event_Generator.o: src/IBD_Event_Generator.cc include/IBD_Event_Generator.hh include/Reactor_Antineutrino_Flux.hh include/Positron_Angle.hh include/Energy_Momentum.hh include/IBD_Cross_Section.hh
