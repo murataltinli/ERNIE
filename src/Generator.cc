@@ -18,8 +18,10 @@ int main(int argc, char** argv)
   const char* cardFileName = nullptr;
   double power; // reactor thermal power (W)
   double time;
+  const double tmin = 0;
+  const double tmax = 600;
   FissionFraction fFrac;
-  double gw2w = pow(10,9);
+  const double gw2w = pow(10,9);
   
   if(argc==1)
   {
@@ -88,7 +90,7 @@ int main(int argc, char** argv)
            << cardFileName << endl;
       return 0;
     }
-    else if(time < 0 || time > 600)
+    else if(time < tmin || time > tmax)
     {
       cout << "\033[1;31mError:\033[0m Invalid parameter value,"
            << "please check time parameter in: " 
