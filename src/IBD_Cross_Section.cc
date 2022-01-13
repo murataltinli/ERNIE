@@ -1,3 +1,11 @@
+/******************************************************************************
+Reference:
+P. Vogel and J. F. Beacom
+“Angular distribution of neutron inverse beta decay”
+Phys. Rev. D 60, 053003 (1999)
+https://doi.org/10.1103/PhysRevD.60.053003
+*******************************************************************************/
+
 #include <cmath>
 
 #include "IBD_Cross_Section.hh"
