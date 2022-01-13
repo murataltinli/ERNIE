@@ -5,11 +5,10 @@
 // positron energy (MeV)
 double positron_Energy(double E_nu /*MeV*/, double costheta_e)
 {
-  double y = sqrt((pow(Delta,2) - pow(m_e,2)) / 2);
   double E_e = E_nu - (Delta); // positron energy (MeV)
   double p_e = sqrt(pow(E_e,2)-pow(m_e,2)); // positron momentum (MeV/c)
   double v_e = p_e / E_e; // positron velocity
-  double E_e1 = E_e * (1 - (E_nu / M) * (1 - v_e * costheta_e)) - (pow(y,2) / M);
+  double E_e1 = E_e * (1 - (E_nu / M) * (1 - v_e * costheta_e)) - (y2 / M);
   return E_e1;
 }
 
@@ -46,10 +45,9 @@ double neutron_Angle(double E_nu, double costheta_e)
 // neutron kinetic energy (MeV)
 double neutron_Kinetic_Energy(double E_nu, double costheta_e)
 {
-  double y = sqrt((pow(Delta,2) - pow(m_e,2)) / 2);
   double E_e = E_nu - (Delta); // positron energy (MeV)
   double p_e = sqrt(pow(E_e,2)-pow(m_e,2)); // positron momentum (MeV/c)
   double v_e = p_e / E_e; // positron velocity
-  double KE_n = (((E_nu * E_e) / M) * (1 - v_e * costheta_e) + (pow(y,2) / M));
+  double KE_n = (((E_nu * E_e) / M) * (1 - v_e * costheta_e) + (y2 / M));
   return KE_n;
 }
