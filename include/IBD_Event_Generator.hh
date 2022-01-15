@@ -3,6 +3,8 @@
 
 #include "Reactor_Antineutrino_Flux.hh"
 
+extern const double M_p;
+
 void IBD_Event_Generate
 (
   int,
