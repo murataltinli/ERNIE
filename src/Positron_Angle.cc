@@ -7,7 +7,6 @@ https://doi.org/10.1103/PhysRevD.60.053003
 *******************************************************************************/
 
 #include "Positron_Angle.hh"
-#include "Energy_Momentum.hh"
 
 #include <random>
 #include <cmath>
@@ -43,10 +42,12 @@ double positron_Angle(double E_nu, default_random_engine& generator)
   uniform_real_distribution<double> uniformDist1(-1.0,1.0);
   uniform_real_distribution<double> uniformDist2(0.0,1.0);
 
+  const double mincostheta_e = -1;
+
   while(true)
   { 
     double x = uniformDist1(generator);
-    double y = uniformDist2(generator) * (positron_dist(E_nu,-1));   
+    double y = uniformDist2(generator) * (positron_dist(E_nu,mincostheta_e));   
     if(y <= positron_dist(E_nu,x))
     {
       return x;

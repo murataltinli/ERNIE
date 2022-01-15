@@ -9,7 +9,6 @@ https://doi.org/10.1103/PhysRevD.60.053003
 #include <cmath>
 
 #include "IBD_Cross_Section.hh"
-#include "Energy_Momentum.hh"
 
 // inverse beta decay cross section (cm^2)
 double IBDSigmaTot0(double E_nu)

@@ -1,8 +1,8 @@
 #include "IBD_Event_Generator.hh"
 
 #include "Positron_Angle.hh"
-#include "Energy_Momentum.hh"
 #include "IBD_Cross_Section.hh"
+#include "Energy_Momentum.hh"
 
 #include <random>
 #include <iostream>
@@ -30,8 +30,8 @@ void IBD_Event_Generate
   FissionFraction fFrac
 )  
 {
-  double xmax = 9; // maximum neutrino energy 
-  double xmin = 1.806; // minimum neutrino energy 
+  const double xmax = 9; // maximum neutrino energy 
+  const double xmin = 1.806; // minimum neutrino energy 
   double x, y, costheta_e, sintheta_e, costheta_n, phi_e,
   E_n, KE_n, E_e, KE_e, p_n, p_e, px_e, px_n, py_e, py_n, pz_e, pz_n, pT_e;
 
@@ -80,7 +80,7 @@ void IBD_Event_Generate
     tree[i]->Branch("pyn",&py_n);
     tree[i]->Branch("pze",&pz_e);
     tree[i]->Branch("pzn",&pz_n);
-  }
+  }  
 
   double counter = 0;
   while(counter<numberOfEvents)
@@ -88,7 +88,7 @@ void IBD_Event_Generate
     for(int i = 1; i < 5; i++)
     {
       x = uniformDist(generator) * (xmax - xmin) + xmin; // choose neutrino energy
-      y = uniformDist(generator) * RAFlux(3.4,5,power,time,fFrac) * IBDSigmaTot0(4);
+      y = uniformDist(generator) * RAFlux(3.4,par[1],power,time,fFrac) * IBDSigmaTot0(4);
       phi_e = uniformDist(generator) * 2 * M_PI;
       
       if(y <= RAFlux(x,par[i],power,time,fFrac) * IBDSigmaTot0(x))
@@ -115,7 +115,7 @@ void IBD_Event_Generate
         tree0->Fill();
         
         GenEvent event(Units::MEV,Units::CM);
-        GenParticlePtr particle1 = make_shared<GenParticle>(FourVector(0.0, 0.0, 0.0, M_p), pID_p,  4);
+        GenParticlePtr particle1 = make_shared<GenParticle>(FourVector(0.0, 0.0, 0.0, M_p), pID_p, 4);
         GenParticlePtr particle2 = make_shared<GenParticle>(FourVector(0.0, 0.0, x, x), pID_nu, 4);
         GenParticlePtr particle3 = make_shared<GenParticle>(FourVector(px_n, py_n, pz_n, E_n), pID_n, 1);
         GenParticlePtr particle4 = make_shared<GenParticle>(FourVector(px_e, py_e, pz_e, E_e), pID_e, 1);

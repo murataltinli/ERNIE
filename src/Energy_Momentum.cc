@@ -2,6 +2,13 @@
 
 #include <cmath>
 
+const double M_p = 938.2720813; // proton mass (MeV/c^2)
+const double M_n = 939.5654133; // neutron mass (MeV/c^2)
+const double m_e = 0.511; // positron mass (MeV/c^2)
+const double M = ((M_n + M_p) / 2); // average nucleon mass
+const double Delta = M_n - M_p; // M_n - M_p
+const double y2 = ((Delta*Delta) - (m_e*m_e)) / 2;
+
 // positron energy (MeV)
 double positron_Energy(double E_nu /*MeV*/, double costheta_e)
 {
