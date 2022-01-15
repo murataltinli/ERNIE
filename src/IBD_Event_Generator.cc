@@ -136,6 +136,11 @@ void IBD_Event_Generate
         event.set_event_number(eventNumber);
         eventNumber++;
         asc.write_event(event);
+
+        if(counter==numberOfEvents)
+        {
+          break;
+        }
       }
     }
   }
