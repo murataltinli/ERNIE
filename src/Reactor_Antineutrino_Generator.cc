@@ -64,6 +64,10 @@ void Reactor_Antineutrino_Generate
         tree[i]->Fill();
         tree0->Fill();       
       }
+      if(counter==numberOfEvents)
+      {
+        break;
+      }
     }
   }
 
