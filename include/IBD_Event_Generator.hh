@@ -13,7 +13,8 @@ void IBD_Event_Generate
   const char*,
   double ,
   double ,
-  FissionFraction
+  FissionFraction,
+  bool
 );
 
 #endif
