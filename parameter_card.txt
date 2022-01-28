@@ -14,7 +14,7 @@
 Seed= 1234
 
 # number of events
-N= 10000
+N= 100000
 
 # reactor thermal power (GW)
 Power= 3.2
@@ -22,6 +22,18 @@ Power= 3.2
 # time (days)
 Time= 0
 
+# inverse beta decay option 
+# 0: without inverse beta decay
+# 1: with inverse beta decay 
+IBD= 1
+
+# fission fraction model option
+# 0: linear intepolation
+# 1: Mills model
+Mills= 0
+
+#********************************************************
+# linear interpolation parameters for fission fractions
 # initial fission fractions (Time=0)
 U235_i= 0.763
 U238_i= 0.0476
@@ -34,7 +46,23 @@ U238_f= 0.076
 Pu239_f= 0.397
 Pu241_f= 0.102
 
-# inverse beta decay option 
-# 0: without inverse beta decay
-# 1: with inverse beta decay 
-IBD= 1
+#*********************************************************
+
+
+#************************************************
+# Mills model parameters for fission fractions
+
+a= 6.23551e-07
+b= 6.09234e-04
+c= 5.66330e-02
+d= 3.74155e-02 
+e= 8.89526e-01
+f= 5.66078e-01
+g= 4.30585e-02
+h= 2.84277e+00
+i= 2.09560e-01
+
+# Initial uranium mass (tonnes)
+UraniumMass= 76
+
+#*************************************************
