@@ -27,7 +27,8 @@ void IBD_Event_Generate
   const char* hepmc3FileName,
   double power, // reactor thermal power (W)
   double time,
-  FissionFraction fFrac
+  FissionFraction fFrac,
+  bool Mills
 )  
 {
   const double xmax = 9; // maximum neutrino energy 
@@ -88,10 +89,10 @@ void IBD_Event_Generate
     for(int i = 1; i < 5; i++)
     {
       x = uniformDist(generator) * (xmax - xmin) + xmin; // choose neutrino energy
-      y = uniformDist(generator) * RAFlux(3.4,par[1],power,time,fFrac) * IBDSigmaTot0(4);
+      y = uniformDist(generator) * RAFlux(3.4,par[1],power,time,fFrac,Mills) * IBDSigmaTot0(4);
       phi_e = uniformDist(generator) * 2 * M_PI;
       
-      if(y <= RAFlux(x,par[i],power,time,fFrac) * IBDSigmaTot0(x))
+      if(y <= RAFlux(x,par[i],power,time,fFrac,Mills) * IBDSigmaTot0(x))
       { 
         ++counter;
 

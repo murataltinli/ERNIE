@@ -12,7 +12,7 @@ using namespace std;
 int main(int argc, char** argv)
 {
   int numberOfEvents, seed;
-  bool ibd;
+  bool ibd,Mills;
   const char* rootFileName = "Reactor_Antineutrino_IBD_Events.root";
   const char* hepmc3FileName = "Reactor_Antineutrino_IBD_Events.hepmc3";
   const char* cardFileName = nullptr;
@@ -62,6 +62,17 @@ int main(int argc, char** argv)
       else if(name == "U238_f"){fFrac.U238_f=stof(value);}
       else if(name == "Pu239_f"){fFrac.Pu239_f=stof(value);}
       else if(name == "Pu241_f"){fFrac.Pu241_f=stof(value);}
+      else if(name == "a"){fFrac.a=stof(value);}
+      else if(name == "b"){fFrac.b=stof(value);}
+      else if(name == "c"){fFrac.c=stof(value);}
+      else if(name == "d"){fFrac.d=stof(value);}
+      else if(name == "e"){fFrac.e=stof(value);}
+      else if(name == "f"){fFrac.f=stof(value);}
+      else if(name == "g"){fFrac.g=stof(value);}
+      else if(name == "h"){fFrac.h=stof(value);}
+      else if(name == "i"){fFrac.i=stof(value);}
+      else if(name == "UraniumMass"){fFrac.uraniumMass=stof(value);}
+      else if(name == "Mills"){Mills=stoi(value);}
       else if(name == "IBD"){ibd=stoi(value);}
     }
 
@@ -107,7 +118,7 @@ int main(int argc, char** argv)
         rootFileName = "Reactor_Antineutrino_Events.root";
       }
       cout << "Generating Antineutrinos..." << endl;
-      Reactor_Antineutrino_Generate(numberOfEvents,seed,rootFileName,power,time,fFrac);
+      Reactor_Antineutrino_Generate(numberOfEvents,seed,rootFileName,power,time,fFrac,Mills);
       cout << "Generated events are written into the file:" << endl
            << "=> " << rootFileName << endl;
       return 0;
@@ -115,7 +126,7 @@ int main(int argc, char** argv)
     else
     {
       cout << "Generating Events..." << endl;
-      IBD_Event_Generate(numberOfEvents,seed,rootFileName,hepmc3FileName,power,time,fFrac);
+      IBD_Event_Generate(numberOfEvents,seed,rootFileName,hepmc3FileName,power,time,fFrac,Mills);
       cout << "Generated events are written into the files:" << endl
            << "=> " << rootFileName << endl
            << "=> " << hepmc3FileName << endl;

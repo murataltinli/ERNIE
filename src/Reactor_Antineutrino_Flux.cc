@@ -28,25 +28,34 @@ double RAFlux
   double E_nu, // antineutrino energy (MeV)
   int par, // 0: Total, 5: U235, 8: U238, 9: Pu239, 1: Pu241
   double power, // reactor thermal power (W)
-  double time,
-  FissionFraction fFrac
+  double time, // days
+  FissionFraction fFrac,
+  bool Mills // fission fraction model ->  0: linear intepolation, 1: mills model
 )
 {    
   double x5 = 0, x8 = 0, x9 = 0, x1 = 0;
   double s5, s8, s9, s1;
+  double f5, f8, f9, f1;
 
-  double mev2j = 1.6 * pow(10, -13);
+  const double mev2j = 1.6 * pow(10, -13);
   
   double Flux5, Flux8, Flux9, Flux1, Flux0;
 
-  double tmax = 600;
-  double tmin = 0;
-
   // fission fractions
-  double f5 = fFrac.U235_i + ((fFrac.U235_f - fFrac.U235_i) / (tmax - tmin)) * time; // U235
-  double f8 = fFrac.U238_i + ((fFrac.U238_f - fFrac.U238_i) / (tmax - tmin)) * time; // U238
-  double f9 = fFrac.Pu239_i + ((fFrac.Pu239_f - fFrac.Pu239_i) / (tmax - tmin)) * time; // Pu239
-  double f1 = fFrac.Pu241_i + ((fFrac.Pu241_f - fFrac.Pu241_i) / (tmax - tmin)) * time; // Pu241
+  if(Mills)
+  {
+    f5 = fissionFractions(5,power,time,fFrac);
+    f8 = fissionFractions(8,power,time,fFrac);
+    f9 = fissionFractions(9,power,time,fFrac);
+    f1 = fissionFractions(1,power,time,fFrac);
+  }
+  else
+  {
+    f5 = fissionFractions(5,time,fFrac);
+    f8 = fissionFractions(8,time,fFrac);
+    f9 = fissionFractions(9,time,fFrac);
+    f1 = fissionFractions(1,time,fFrac);
+  }
 
   double a5[6] = {4.367, -4.577, 2.100, -.5294, .06186, -.002777};
   double a8[6] = {.4833, .1927, -.1283, -.006762, .002233, -.0001536};
@@ -59,13 +68,13 @@ double RAFlux
   double e9 = 211.12 * mev2j; // Pu239
   double e1 = 214.26 * mev2j; // Pu241
 
-  for (int p=0; p<6; p++)
+  for (int i = 0; i < 6; i++)
   { 
-    double epow = pow(E_nu,p); 
-    x5 += a5[p] * epow;
-    x8 += a8[p] * epow;
-    x9 += a9[p] * epow;
-    x1 += a1[p] * epow;
+    double epow = pow(E_nu,i); 
+    x5 += a5[i] * epow;
+    x8 += a8[i] * epow;
+    x9 += a9[i] * epow;
+    x1 += a1[i] * epow;
   }
 
   s5 = exp(x5);

@@ -18,11 +18,12 @@ void Reactor_Antineutrino_Generate
   const char* rootFileName,
   double power, // reactor thermal power (W)
   double time,
-  FissionFraction fFrac
+  FissionFraction fFrac,
+  bool Mills
 )  
 {
-  double xmax = 9;
-  double xmin = 1.806;
+  const double xmax = 9;
+  const double xmin = 1.806;
   double x, y;
 
   int par[5] =   {0, // Total
@@ -55,9 +56,9 @@ void Reactor_Antineutrino_Generate
     for(int i = 1; i < 5; i++)
     {
       x = uniformDist(generator) * (xmax - xmin) + xmin;
-      y = uniformDist(generator) * RAFlux(xmin,5,power,time,fFrac);
+      y = uniformDist(generator) * RAFlux(xmin,par[1],power,time,fFrac,Mills);
       
-      if(y <= RAFlux(x,par[i],power,time,fFrac))
+      if(y <= RAFlux(x,par[i],power,time,fFrac,Mills))
       {    
         ++counter;
 
