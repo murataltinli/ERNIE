@@ -50,13 +50,14 @@ void Reactor_Antineutrino_Generate
     tree[i]->Branch("Enu",&x);
   }  
   
+  double maxflux = RAFlux(xmin,par[1],power,time,fFrac,Mills);
   double counter = 0;
   while(counter<numberOfEvents)
   { 
     for(int i = 1; i < 5; i++)
     {
       x = uniformDist(generator) * (xmax - xmin) + xmin;
-      y = uniformDist(generator) * RAFlux(xmin,par[1],power,time,fFrac,Mills);
+      y = uniformDist(generator) * maxflux;
       
       if(y <= RAFlux(x,par[i],power,time,fFrac,Mills))
       {    

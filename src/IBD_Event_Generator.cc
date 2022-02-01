@@ -19,6 +19,24 @@ using namespace std;
 
 using namespace HepMC3;
 
+double IBDEventMax(int par, double power, double time, FissionFraction fFrac, bool Mills)
+{
+  double result;
+  double maximum = 0;
+  double stepSize = 0.1;
+  
+  for(double E_nu = 1.8; E_nu < 6; E_nu += stepSize)
+  {
+    result = RAFlux(E_nu,par,power,time,fFrac,Mills) * IBDSigmaTot0(E_nu);
+    
+    if(result > maximum)
+    {
+      maximum = result;
+    }
+  }
+  return maximum;
+}
+
 void IBD_Event_Generate
 (
   int numberOfEvents,
@@ -83,13 +101,14 @@ void IBD_Event_Generate
     tree[i]->Branch("pzn",&pz_n);
   }  
 
+  double ibdmax = IBDEventMax(par[1],power,time,fFrac,Mills);
   double counter = 0;
   while(counter<numberOfEvents)
   {  
     for(int i = 1; i < 5; i++)
-    {
+    {  
       x = uniformDist(generator) * (xmax - xmin) + xmin; // choose neutrino energy
-      y = uniformDist(generator) * RAFlux(3.4,par[1],power,time,fFrac,Mills) * IBDSigmaTot0(4);
+      y = uniformDist(generator) * ibdmax;
       phi_e = uniformDist(generator) * 2 * M_PI;
       
       if(y <= RAFlux(x,par[i],power,time,fFrac,Mills) * IBDSigmaTot0(x))
