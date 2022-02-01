@@ -28,7 +28,7 @@ Time= 0
 IBD= 1
 
 # fission fraction model option
-# 0: linear intepolation
+# 0: linear interpolation
 # 1: Mills model
 Mills= 0
 
