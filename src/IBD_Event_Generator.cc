@@ -150,6 +150,11 @@ void IBD_Event_Generate
     
   for(int i = 0; i < 5; ++i)
   {
+    if(tree[i]->GetEntries() == 0)
+    { 
+      cout << "\033[1;35mWarning:\033[0m " << tree[i]->GetName() << " tree is empty!" << endl;
+      continue;
+    }
     tree[i]->Write();
   }
 

@@ -82,7 +82,7 @@ int main(int argc, char** argv)
       || fFrac.U235_f+fFrac.U238_f+fFrac.Pu239_f+fFrac.Pu241_f > 1.001 
       || fFrac.U235_f+fFrac.U238_f+fFrac.Pu239_f+fFrac.Pu241_f < 0.99 )
     {
-      cout << "\033[1;35mWarning:\033[0m Invalid parameter values,"
+      cout << "\033[1;31mError:\033[0m Invalid parameter values,"
            << "please check fission fraction parameters in: " 
            << cardFileName << endl;
       return 0;
