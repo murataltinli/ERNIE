@@ -101,14 +101,17 @@ void IBD_Event_Generate
     tree[i]->Branch("pzn",&pz_n);
   }  
 
-  double ibdmax = IBDEventMax(par[1],power,time,fFrac,Mills);
+  double ymax = 1.05 * max(IBDEventMax(par[1],power,time,fFrac,Mills),
+                           max(IBDEventMax(par[2],power,time,fFrac,Mills),
+                               max(IBDEventMax(par[3],power,time,fFrac,Mills),
+                                   IBDEventMax(par[4],power,time,fFrac,Mills))));
   double counter = 0;
   while(counter<numberOfEvents)
   {  
     for(int i = 1; i < 5; i++)
     {  
       x = uniformDist(generator) * (xmax - xmin) + xmin; // choose neutrino energy
-      y = uniformDist(generator) * ibdmax;
+      y = uniformDist(generator) * ymax;
       phi_e = uniformDist(generator) * 2 * M_PI;
       
       if(y <= RAFlux(x,par[i],power,time,fFrac,Mills) * IBDSigmaTot0(x))
