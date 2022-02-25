@@ -4,7 +4,8 @@ LIBS = `root-config --glibs` -lHepMC3 -lstdc++ \
 -Wl,-rpath $(HEPMC3_DIR)/lib
 INCLUDES = -I./include -I$(HEPMC3_DIR)/include
 OBJECTS = IBD_Event_Generator.o Reactor_Antineutrino_Generator.o Positron_Angle.o \
-IBD_Cross_Section.o Energy_Momentum.o Reactor_Antineutrino_Flux.o Fission_Fractions.o
+IBD_Cross_Section.o Energy_Momentum.o Reactor_Antineutrino_Flux.o Fission_Fractions.o \
+Reactor_Antineutrino_Spectra.o
 INPUT = src/Generator.cc
 OUTPUT = Generator
 
@@ -45,6 +46,9 @@ Reactor_Antineutrino_Flux.o: src/Reactor_Antineutrino_Flux.cc include/Reactor_An
 
 Fission_Fractions.o: src/Fission_Fractions.cc include/Fission_Fractions.hh
 	$(CC) $(CFLAGS) $(INCLUDES) -c src/Fission_Fractions.cc
+
+Reactor_Antineutrino_Spectra.o: src/Reactor_Antineutrino_Spectra.cc include/Reactor_Antineutrino_Spectra.hh
+	$(CC) $(CFLAGS) $(INCLUDES) -c src/Reactor_Antineutrino_Spectra.cc
 
 clean:
 	rm -f $(OUTPUT) $(OBJECTS)

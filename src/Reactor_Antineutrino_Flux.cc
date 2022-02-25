@@ -1,16 +1,5 @@
 /****************************************************************************************************
 
-Antineutrino spectrum is from:
-Mueller, Th A., D. Lhuillier, M. Fallot, A. Letourneau, S. Cormon, M. Fechner, L. Giot, et al.
-“Improved Predictions of Reactor Antineutrino Spectra.”
-Physical Review C 83, no. 5 (May 23, 2011): 054615.
-https://doi.org/10.1103/PhysRevC.83.054615.
-
-Huber, Patrick.
-“On the Determination of Anti-Neutrino Spectra from Nuclear Reactors.”
-Physical Review C 84, no. 2 (August 29, 2011): 024617.
-https://doi.org/10.1103/PhysRevC.84.024617.
-
 Energy per fission values are from:
 Ma, X. B., W. L. Zhong, L. Z. Wang, Y. X. Chen, and J. Cao.
 “Improved Calculation of the Energy Release in Neutron-Induced Fission.”
@@ -19,6 +8,8 @@ https://doi.org/10.1103/PhysRevC.88.014605.
 
 *****************************************************************************************************/
 #include "Reactor_Antineutrino_Flux.hh"
+
+#include "Reactor_Antineutrino_Spectra.hh"
 
 #include <cmath>
 
@@ -30,37 +21,32 @@ double RAFlux
   double power, // reactor thermal power (W)
   double time, // days
   FissionFraction fFrac,
-  bool Mills // fission fraction model ->  0: linear intepolation, 1: mills model
+  bool isParam, // fission fraction model ->  0: linear intepolation, 1: mills model
+  int spectrumModel // 0: Huber-Mueller, 1: ILL-Vogel
 )
-{    
-  double x5 = 0, x8 = 0, x9 = 0, x1 = 0;
-  double s5, s8, s9, s1;
+{
   double f5, f8, f9, f1;
+  double s5, s8, s9, s1;
 
   const double mev2j = 1.6 * pow(10, -13);
   
   double Flux5, Flux8, Flux9, Flux1, Flux0;
 
   // fission fractions
-  if(Mills)
+  if(isParam)
   {
-    f5 = fissionFractions(5,power,time,fFrac);
-    f8 = fissionFractions(8,power,time,fFrac);
-    f9 = fissionFractions(9,power,time,fFrac);
-    f1 = fissionFractions(1,power,time,fFrac);
+    f5 = fissionFractionsMills(5,power,time,fFrac);
+    f8 = fissionFractionsMills(8,power,time,fFrac);
+    f9 = fissionFractionsMills(9,power,time,fFrac);
+    f1 = fissionFractionsMills(1,power,time,fFrac);
   }
   else
   {
-    f5 = fissionFractions(5,time,fFrac);
-    f8 = fissionFractions(8,time,fFrac);
-    f9 = fissionFractions(9,time,fFrac);
-    f1 = fissionFractions(1,time,fFrac);
+    f5 = fissionFractionsLinInt(5,time,fFrac);
+    f8 = fissionFractionsLinInt(8,time,fFrac);
+    f9 = fissionFractionsLinInt(9,time,fFrac);
+    f1 = fissionFractionsLinInt(1,time,fFrac);
   }
-
-  double a5[6] = {4.367, -4.577, 2.100, -.5294, .06186, -.002777};
-  double a8[6] = {.4833, .1927, -.1283, -.006762, .002233, -.0001536};
-  double a9[6] = {4.757, -5.392, 2.563, -.6596, .07820, -.003536};
-  double a1[6] = {2.990, -2.882, 1.278, -.3343, .03905, -.001754};
 
   // energies per fission (J)
   double e5 = 202.36 * mev2j; // U235
@@ -68,19 +54,20 @@ double RAFlux
   double e9 = 211.12 * mev2j; // Pu239
   double e1 = 214.26 * mev2j; // Pu241
 
-  for (int i = 0; i < 6; i++)
+  if(spectrumModel == 0)
   { 
-    double epow = pow(E_nu,i); 
-    x5 += a5[i] * epow;
-    x8 += a8[i] * epow;
-    x9 += a9[i] * epow;
-    x1 += a1[i] * epow;
+    s5 = HMSpectrum(5,E_nu);
+    s8 = HMSpectrum(8,E_nu);
+    s9 = HMSpectrum(9,E_nu);
+    s1 = HMSpectrum(1,E_nu);
   }
-
-  s5 = exp(x5);
-  s8 = exp(x8);
-  s9 = exp(x9);
-  s1 = exp(x1);
+  else if(spectrumModel == 1)
+  {
+    s5 = IVSpectrum(5,E_nu);
+    s8 = IVSpectrum(8,E_nu);
+    s9 = IVSpectrum(9,E_nu);
+    s1 = IVSpectrum(1,E_nu);
+  }
 
   Flux5 = (power / (e5*f5 + e8*f8 + e9*f9 + e1*f1)) * f5 * s5;
   Flux8 = (power / (e5*f5 + e8*f8 + e9*f9 + e1*f1)) * f8 * s8;

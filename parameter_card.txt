@@ -27,10 +27,15 @@ Time= 0
 # 1: with inverse beta decay 
 IBD= 1
 
+# antineutrino spectrum model option 
+# 0: Huber-Mueller
+# 1: ILL-Vogel
+SpectrumModel= 0
+
 # fission fraction model option
 # 0: linear interpolation
 # 1: Mills model
-Mills= 0
+isParam= 0
 
 #********************************************************
 # linear interpolation parameters for fission fractions

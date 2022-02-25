@@ -19,7 +19,8 @@ void Reactor_Antineutrino_Generate
   double power, // reactor thermal power (W)
   double time,
   FissionFraction fFrac,
-  bool Mills
+  bool isParam,
+  int spectrumModel
 )  
 {
   const double xmax = 9;
@@ -50,10 +51,10 @@ void Reactor_Antineutrino_Generate
     tree[i]->Branch("Enu",&x);
   }
 
-  double ymax = max(RAFlux(xmin,par[1],power,time,fFrac,Mills),
-                    max(RAFlux(xmin,par[2],power,time,fFrac,Mills),
-                        max(RAFlux(xmin,par[3],power,time,fFrac,Mills),
-                            RAFlux(xmin,par[4],power,time,fFrac,Mills))));
+  double ymax = max(RAFlux(xmin,par[1],power,time,fFrac,isParam,spectrumModel),
+                    max(RAFlux(xmin,par[2],power,time,fFrac,isParam,spectrumModel),
+                        max(RAFlux(xmin,par[3],power,time,fFrac,isParam,spectrumModel),
+                            RAFlux(xmin,par[4],power,time,fFrac,isParam,spectrumModel))));
   double counter = 0;
   while(counter<numberOfEvents)
   { 
@@ -62,7 +63,7 @@ void Reactor_Antineutrino_Generate
       x = uniformDist(generator) * (xmax - xmin) + xmin;
       y = uniformDist(generator) * ymax;
       
-      if(y <= RAFlux(x,par[i],power,time,fFrac,Mills))
+      if(y <= RAFlux(x,par[i],power,time,fFrac,isParam,spectrumModel))
       {    
         ++counter;
 

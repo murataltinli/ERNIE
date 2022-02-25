@@ -1,5 +1,9 @@
-*.root
 *.hepmc3
-*.o
+*.root
 Generator
+plots
+.vscode
+*.log
+rootlogon.C
+*.o
 .DS_Store

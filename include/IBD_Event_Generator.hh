@@ -5,7 +5,7 @@
 
 extern const double M_p;
 
-double IBDEventMax(int, double, double, FissionFraction, bool);
+double IBDEventMax(int, double, double, FissionFraction, bool, int);
 
 void IBD_Event_Generate
 (
@@ -16,7 +16,8 @@ void IBD_Event_Generate
   double ,
   double ,
   FissionFraction,
-  bool
+  bool,
+  int
 );
 
 #endif

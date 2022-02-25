@@ -26,8 +26,8 @@ struct FissionFraction
   double Pu241_f;
 };
 
-double fissionFractions(int, double, double, FissionFraction);
+double fissionFractionsMills(int, double, double, FissionFraction);
 
-double fissionFractions(int, double, FissionFraction);
+double fissionFractionsLinInt(int, double, FissionFraction);
 
 #endif

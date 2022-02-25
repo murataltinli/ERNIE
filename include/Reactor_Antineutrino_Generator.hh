@@ -11,7 +11,8 @@ void Reactor_Antineutrino_Generate
   double,
   double,
   FissionFraction,
-  bool
+  bool,
+  int
 );
 
 #endif

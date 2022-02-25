@@ -13,7 +13,7 @@ https://doi.org/10.1016/j.net.2020.03.004.
 #include <cmath>
 
 // Mills model
-double fissionFractions(int par, // 5: U235, 8: U238, 9: Pu239, 1: Pu241 
+double fissionFractionsMills(int par, // 5: U235, 8: U238, 9: Pu239, 1: Pu241 
                         double power, // reactor thermal power (W)
                         double time, // days
                         FissionFraction fPar)
@@ -33,7 +33,7 @@ double fissionFractions(int par, // 5: U235, 8: U238, 9: Pu239, 1: Pu241
 }
 
 // linear interpolation
-double fissionFractions(int par, // 5: U235, 8: U238, 9: Pu239, 1: Pu241 
+double fissionFractionsLinInt(int par, // 5: U235, 8: U238, 9: Pu239, 1: Pu241 
                         double time,
                         FissionFraction fFrac)
 {

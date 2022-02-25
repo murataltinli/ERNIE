@@ -12,7 +12,8 @@ using namespace std;
 int main(int argc, char** argv)
 {
   int numberOfEvents, seed;
-  bool ibd,Mills;
+  bool ibd, isParam;
+  int spectrumModel;
   const char* rootFileName = "Reactor_Antineutrino_IBD_Events.root";
   const char* hepmc3FileName = "Reactor_Antineutrino_IBD_Events.hepmc3";
   const char* cardFileName = nullptr;
@@ -72,8 +73,9 @@ int main(int argc, char** argv)
       else if(name == "h"){fFrac.h=stof(value);}
       else if(name == "i"){fFrac.i=stof(value);}
       else if(name == "UraniumMass"){fFrac.uraniumMass=stof(value);}
-      else if(name == "Mills"){Mills=stoi(value);}
+      else if(name == "isParam"){isParam=stoi(value);}
       else if(name == "IBD"){ibd=stoi(value);}
+      else if(name == "SpectrumModel"){spectrumModel=stoi(value);}
     }
 
     // parameter value errors
@@ -118,7 +120,8 @@ int main(int argc, char** argv)
         rootFileName = "Reactor_Antineutrino_Events.root";
       }
       cout << "Generating Antineutrinos..." << endl;
-      Reactor_Antineutrino_Generate(numberOfEvents,seed,rootFileName,power,time,fFrac,Mills);
+      Reactor_Antineutrino_Generate(numberOfEvents,seed,rootFileName,power,time,fFrac,
+                                    isParam,spectrumModel);
       cout << "Generated events are written into the file:" << endl
            << "=> " << rootFileName << endl;
       return 0;
@@ -126,7 +129,8 @@ int main(int argc, char** argv)
     else
     {
       cout << "Generating Events..." << endl;
-      IBD_Event_Generate(numberOfEvents,seed,rootFileName,hepmc3FileName,power,time,fFrac,Mills);
+      IBD_Event_Generate(numberOfEvents,seed,rootFileName,hepmc3FileName,power,time,fFrac,
+                          isParam,spectrumModel);
       cout << "Generated events are written into the files:" << endl
            << "=> " << rootFileName << endl
            << "=> " << hepmc3FileName << endl;
