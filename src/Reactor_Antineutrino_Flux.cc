@@ -54,19 +54,33 @@ double RAFlux
   double e9 = 211.12 * mev2j; // Pu239
   double e1 = 214.26 * mev2j; // Pu241
 
-  if(spectrumModel == 0)
+  if(spectrumModel == 1)
   { 
     s5 = HMSpectrum(5,E_nu);
     s8 = HMSpectrum(8,E_nu);
     s9 = HMSpectrum(9,E_nu);
     s1 = HMSpectrum(1,E_nu);
   }
-  else if(spectrumModel == 1)
+  else if(spectrumModel == 2)
   {
     s5 = IVSpectrum(5,E_nu);
     s8 = IVSpectrum(8,E_nu);
     s9 = IVSpectrum(9,E_nu);
     s1 = IVSpectrum(1,E_nu);
+  }
+  else if(spectrumModel == 3)
+  {
+    s5 = MSpectrum(5,E_nu);
+    s8 = MSpectrum(8,E_nu);
+    s9 = MSpectrum(9,E_nu);
+    s1 = MSpectrum(1,E_nu);
+  }
+  else if(spectrumModel == 0)
+  {
+    s5 = UserSpectrum(5,E_nu);
+    s8 = UserSpectrum(8,E_nu);
+    s9 = UserSpectrum(9,E_nu);
+    s1 = UserSpectrum(1,E_nu);
   }
 
   Flux5 = (power / (e5*f5 + e8*f8 + e9*f9 + e1*f1)) * f5 * s5;

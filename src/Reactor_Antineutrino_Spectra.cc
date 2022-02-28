@@ -1,3 +1,39 @@
+#include "Reactor_Antineutrino_Spectra.hh"
+
+#include <cmath>
+
+double Spectrum(double E_nu, double* a)
+{
+  double x = 0;
+
+  for (int i = 0; i < 6; i++)
+  { 
+    double epow = pow(E_nu,i); 
+    x += a[i] * epow;
+  }
+
+  double spectrum = exp(x);
+
+  return spectrum;
+}
+
+// User Defined Spectrum
+// calculates reactor antineutrino spectrum using coefficient values given by the user
+// coefficient values for each isotope (U235, U238, Pu239, Pu241) should be defined to use
+double UserSpectrum(int par, // 5: U235; 8: U238; 9: Pu239; 1: Pu241
+                    double E_nu)
+{
+  // coefficient values (to be defined by the user)
+  double a5[6] = {.0, .0, .0, .0, .0, .0}; // U235 coefficients
+  double a8[6] = {.0, .0, .0, .0, .0, .0}; // U238 coefficients
+  double a9[6] = {.0, .0, .0, .0, .0, .0}; // Pu239 coefficients
+  double a1[6] = {.0, .0, .0, .0, .0, .0};  // Pu241 coefficients
+  
+  double *a[10] = {0,a1,0,0,0,a5,0,0,a8,a9};
+ 
+  return Spectrum(E_nu,a[par]);
+}
+
 /***********************************************************************************************
 
 Mueller, Th A., D. Lhuillier, M. Fallot, A. Letourneau, S. Cormon, M. Fechner, L. Giot, et al.
@@ -12,40 +48,30 @@ https://doi.org/10.1103/PhysRevC.84.024617.
 
 ************************************************************************************************/
 
-#include "Reactor_Antineutrino_Spectra.hh"
-
-#include <cmath>
-
 // Huber-Mueller Spectrum
 double HMSpectrum(int par, // 5: U235; 8: U238; 9: Pu239; 1: Pu241
                   double E_nu)
 {
-  double x5 = 0, x8 = 0, x9 = 0, x1 = 0;
-
-  double a5[6] = {4.367, -4.577, 2.100, -.5294, .06186, -.002777};
+  double a5[6] = {4.367, -4.577, 2.100, -.5294,   .06186,  -.002777};
   double a8[6] = {.4833, .1927, -.1283, -.006762, .002233, -.0001536};
-  double a9[6] = {4.757, -5.392, 2.563, -.6596, .07820, -.003536};
-  double a1[6] = {2.990, -2.882, 1.278, -.3343, .03905, -.001754};
+  double a9[6] = {4.757, -5.392, 2.563, -.6596,   .07820,  -.003536};
+  double a1[6] = {2.990, -2.882, 1.278, -.3343,   .03905,  -.001754};
+  double *a[10] = {0,a1,0,0,0,a5,0,0,a8,a9};
+  
+  return Spectrum(E_nu,a[par]);
+}
 
-  for (int i = 0; i < 6; i++)
-  { 
-    double epow = pow(E_nu,i); 
-    x5 += a5[i] * epow;
-    x8 += a8[i] * epow;
-    x9 += a9[i] * epow;
-    x1 += a1[i] * epow;
-  }
-
-  double s5 = exp(x5);
-  double s8 = exp(x8);
-  double s9 = exp(x9);
-  double s1 = exp(x1);
-
-  if(par == 5){return s5;}
-  else if(par == 8){return s8;}
-  else if(par == 9){return s9;}
-  else if(par == 1){return s1;}
-  else{return 0;}
+// Mueller Spectrum
+double MSpectrum(int par, // 5: U235; 8: U238; 9: Pu239; 1: Pu241
+                double E_nu)
+{
+  double a5[6] = {3.217, -3.111,  1.395, -.3690,   .04445,  -.002053};
+  double a8[6] = {.4833,  .1927, -.1283, -.006762, .002233, -.0001536};
+  double a9[6] = {6.413, -7.432,  3.535, -.8820,   .1025,    .004550};
+  double a1[6] = {3.251, -3.204,  1.428, -.3675,   .04254,  -.001896};
+  double *a[10] = {0,a1,0,0,0,a5,0,0,a8,a9};
+  
+  return Spectrum(E_nu,a[par]);
 }
 
 /****************************************************************************************
@@ -53,49 +79,17 @@ double HMSpectrum(int par, // 5: U235; 8: U238; 9: Pu239; 1: Pu241
  ” Physical Review D 70, no. 5 (September 17, 2004): 053011.
  https://doi.org/10.1103/PhysRevD.70.053011.
 
- ........
-
- Schreckenbach, K., G. Colvin, W. Gelletly, and F. Von Feilitzsch.
- “Determination of the Antineutrino Spectrum from 235U Thermal Neutron Fission Products
-  up to 9.5 MeV.” 
- Physics Letters B 160, no. 4–5 (October 1985): 325–30.
- https://doi.org/10.1016/0370-2693(85)91337-1.
-
- Hahn, A.A., K. Schreckenbach, W. Gelletly, F. von Feilitzsch, G. Colvin, and B. Krusche.
- “Antineutrino Spectra from 241Pu and 239Pu Thermal Neutron Fission Products.”
- Physics Letters B 218, no. 3 (February 1989): 365–68.
- https://doi.org/10.1016/0370-2693(89)91598-0.
-
 *****************************************************************************************/
 
 // ILL-Vogel Spectrum
 double IVSpectrum(int par, // 5: U235; 8: U238; 9: Pu239; 1: Pu241
                   double E_nu)
 {
-  double x5 = 0, x8 = 0, x9 = 0, x1 = 0;
+  double a5[6] = {.904,  -.184, -.0878, .0, .0, .0};
+  double a8[6] = {.976,  -.162, -.0790, .0, .0, .0};
+  double a9[6] = {1.162, -.392, -.0790, .0, .0, .0};
+  double a1[6] = {.852,  -.126, -.1037, .0, .0, .0};
+  double *a[10] = {0,a1,0,0,0,a5,0,0,a8,a9};
 
-  double a5[3] = {.904, -.184, -.0878};
-  double a8[3] = {.976, -.162, -.0790};
-  double a9[3] = {1.162, -.392, -.0790};
-  double a1[3] = {.852, -.126, -.1037};
-
-  for (int i = 0; i < 3; i++)
-  { 
-    double epow = pow(E_nu,i); 
-    x5 += a5[i] * epow;
-    x8 += a8[i] * epow;
-    x9 += a9[i] * epow;
-    x1 += a1[i] * epow;
-  }
-
-  double s5 = exp(x5);
-  double s8 = exp(x8);
-  double s9 = exp(x9);
-  double s1 = exp(x1);
-
-  if(par == 5){return s5;}
-  else if(par == 8){return s8;}
-  else if(par == 9){return s9;}
-  else if(par == 1){return s1;}
-  else{return 0;}
+  return Spectrum(E_nu,a[par]);
 }

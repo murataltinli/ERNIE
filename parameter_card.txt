@@ -28,9 +28,12 @@ Time= 0
 IBD= 1
 
 # antineutrino spectrum model option 
-# 0: Huber-Mueller
-# 1: ILL-Vogel
-SpectrumModel= 0
+# 0: User Defined*  
+#     *UserSpectrum() function in Reactor_Antineutrino_Spectra.cc file should be modified to use
+# 1: Huber-Mueller
+# 2: ILL-Vogel
+# 3: Mueller
+SpectrumModel= 1
 
 # fission fraction model option
 # 0: linear interpolation
@@ -51,7 +54,7 @@ U238_f= 0.076
 Pu239_f= 0.397
 Pu241_f= 0.102
 
-#*********************************************************
+#********************************************************
 
 
 #************************************************
