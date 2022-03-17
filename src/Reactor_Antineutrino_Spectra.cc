@@ -27,7 +27,7 @@ double UserSpectrum(int par, // 5: U235; 8: U238; 9: Pu239; 1: Pu241
   double a5[6] = {.0, .0, .0, .0, .0, .0}; // U235 coefficients
   double a8[6] = {.0, .0, .0, .0, .0, .0}; // U238 coefficients
   double a9[6] = {.0, .0, .0, .0, .0, .0}; // Pu239 coefficients
-  double a1[6] = {.0, .0, .0, .0, .0, .0};  // Pu241 coefficients
+  double a1[6] = {.0, .0, .0, .0, .0, .0}; // Pu241 coefficients
   
   double *a[10] = {0,a1,0,0,0,a5,0,0,a8,a9};
  

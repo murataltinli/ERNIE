@@ -22,7 +22,7 @@ double RAFlux
   double time, // days
   FissionFraction fFrac,
   bool isParam, // fission fraction model ->  0: linear intepolation, 1: mills model
-  int spectrumModel // 0: Huber-Mueller, 1: ILL-Vogel
+  int spectrumModel // 0: User-Defined, 1: Huber-Mueller, 2: ILL-Vogel, 3: Mueller  
 )
 {
   double f5, f8, f9, f1;

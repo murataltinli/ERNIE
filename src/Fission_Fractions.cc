@@ -21,9 +21,9 @@ double fissionFractionsMills(int par, // 5: U235, 8: U238, 9: Pu239, 1: Pu241
   const double w2gw = pow(10,-9);
   double I = power * w2gw * time / fPar.uraniumMass; // burnup (GWd/t)
 
-  double f8 =  fPar.c + fPar.b * I + fPar.a * pow(I,2);
-  double f9 =  pow((1 - exp(-fPar.d * I)),fPar.e) * fPar.f;
-  double f1 =  pow((1 - exp(-fPar.g * I)),fPar.h) * fPar.i;
+  double f8 = fPar.c + fPar.b * I + fPar.a * pow(I,2);
+  double f9 = pow((1 - exp(-fPar.d * I)),fPar.e) * fPar.f;
+  double f1 = pow((1 - exp(-fPar.g * I)),fPar.h) * fPar.i;
   double f5 = 1 - f9 - f1 - f8;
   
   if(par == 5){return f5;}

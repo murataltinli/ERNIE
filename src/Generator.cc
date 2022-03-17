@@ -73,8 +73,34 @@ int main(int argc, char** argv)
       else if(name == "h"){fFrac.h=stof(value);}
       else if(name == "i"){fFrac.i=stof(value);}
       else if(name == "UraniumMass"){fFrac.uraniumMass=stof(value);}
-      else if(name == "isParam"){isParam=stoi(value);}
-      else if(name == "IBD"){ibd=stoi(value);}
+      else if(name == "isParam")
+      {
+        if(stoi(value) == 0 || stoi(value) == 1)
+        {
+          isParam=stoi(value);
+        }
+        else
+        {
+          cout << "\033[1;31mError:\033[0m Invalid parameter value, "
+               << "please check isParam parameter in: " 
+               << cardFileName << endl;
+          return 0;
+        }
+      }
+      else if(name == "IBD")
+      {
+        if(stoi(value) == 0 || stoi(value) == 1)
+        {
+          ibd=stoi(value);
+        }
+        else
+        {
+          cout << "\033[1;31mError:\033[0m Invalid parameter value, "
+               << "please check IBD parameter in: " 
+               << cardFileName << endl;
+          return 0;
+        }
+      }
       else if(name == "SpectrumModel"){spectrumModel=stoi(value);}
     }
 
@@ -84,29 +110,39 @@ int main(int argc, char** argv)
       || fFrac.U235_f+fFrac.U238_f+fFrac.Pu239_f+fFrac.Pu241_f > 1.001 
       || fFrac.U235_f+fFrac.U238_f+fFrac.Pu239_f+fFrac.Pu241_f < 0.99 )
     {
-      cout << "\033[1;31mError:\033[0m Invalid parameter values,"
+      cout << "\033[1;31mError:\033[0m Invalid parameter values, "
            << "please check fission fraction parameters in: " 
            << cardFileName << endl;
       return 0;
     }
     else if(power <= 0)
     {
-      cout << "\033[1;31mError:\033[0m Invalid parameter value,"
+      cout << "\033[1;31mError:\033[0m Invalid parameter value, "
            << "please check reactor thermal power parameter in: " 
            << cardFileName << endl;
       return 0;
     }
     else if(numberOfEvents <= 0)
     {
-      cout << "\033[1;31mError:\033[0m Invalid parameter value,"
+      cout << "\033[1;31mError:\033[0m Invalid parameter value, "
            << "please check number of events parameter in: " 
            << cardFileName << endl;
       return 0;
     }
     else if(time < tmin || time > tmax)
     {
-      cout << "\033[1;31mError:\033[0m Invalid parameter value,"
-           << "please check time parameter in: " 
+      if(!isParam)
+      {
+        cout << "\033[1;31mError:\033[0m Invalid parameter value, "
+             << "please check time parameter in: " 
+             << cardFileName << endl;
+        return 0;
+      }
+    }
+    else if(spectrumModel < 0 || spectrumModel > 3)
+    {
+      cout << "\033[1;31mError:\033[0m Invalid parameter value, "
+           << "please check SpectrumModel parameter in: " 
            << cardFileName << endl;
       return 0;
     }
