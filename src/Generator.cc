@@ -17,12 +17,10 @@ int main(int argc, char** argv)
   const char* rootFileName = "Reactor_Antineutrino_IBD_Events.root";
   const char* hepmc3FileName = "Reactor_Antineutrino_IBD_Events.hepmc3";
   const char* cardFileName = nullptr;
-  double power; // reactor thermal power (W)
   double time;
   const double tmin = 0;
   const double tmax = 600;
   FissionFraction fFrac;
-  const double gw2w = pow(10,9);
   
   if(argc==1)
   {
@@ -53,7 +51,6 @@ int main(int argc, char** argv)
       auto value = line.substr(delimiterPos + 1);
       if(name == "Seed"){seed=stoi(value);}
       else if(name == "N"){numberOfEvents=stoi(value);}
-      else if(name == "Power"){power=stof(value)*gw2w;}
       else if(name == "Time"){time=stof(value);}
       else if(name == "U235_i"){fFrac.U235_i=stof(value);}
       else if(name == "U238_i"){fFrac.U238_i=stof(value);}
@@ -72,7 +69,7 @@ int main(int argc, char** argv)
       else if(name == "g"){fFrac.g=stof(value);}
       else if(name == "h"){fFrac.h=stof(value);}
       else if(name == "i"){fFrac.i=stof(value);}
-      else if(name == "UraniumMass"){fFrac.uraniumMass=stof(value);}
+      else if(name == "tb"){fFrac.tb=stof(value);}
       else if(name == "isParam")
       {
         if(stoi(value) == 0 || stoi(value) == 1)
@@ -115,13 +112,6 @@ int main(int argc, char** argv)
            << cardFileName << endl;
       return 0;
     }
-    else if(power <= 0)
-    {
-      cout << "\033[1;31mError:\033[0m Invalid parameter value, "
-           << "please check reactor thermal power parameter in: " 
-           << cardFileName << endl;
-      return 0;
-    }
     else if(numberOfEvents <= 0)
     {
       cout << "\033[1;31mError:\033[0m Invalid parameter value, "
@@ -156,7 +146,7 @@ int main(int argc, char** argv)
         rootFileName = "Reactor_Antineutrino_Events.root";
       }
       cout << "Generating Antineutrinos..." << endl;
-      Reactor_Antineutrino_Generate(numberOfEvents,seed,rootFileName,power,time,fFrac,
+      Reactor_Antineutrino_Generate(numberOfEvents,seed,rootFileName,time,fFrac,
                                     isParam,spectrumModel);
       cout << "Generated events are written into the file:" << endl
            << "=> " << rootFileName << endl;
@@ -165,7 +155,7 @@ int main(int argc, char** argv)
     else
     {
       cout << "Generating Events..." << endl;
-      IBD_Event_Generate(numberOfEvents,seed,rootFileName,hepmc3FileName,power,time,fFrac,
+      IBD_Event_Generate(numberOfEvents,seed,rootFileName,hepmc3FileName,time,fFrac,
                           isParam,spectrumModel);
       cout << "Generated events are written into the files:" << endl
            << "=> " << rootFileName << endl

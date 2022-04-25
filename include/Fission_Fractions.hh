@@ -13,7 +13,7 @@ struct FissionFraction
   double g;
   double h; 
   double i;
-  double uraniumMass; // tonnes
+  double tb;
 
   // linear interpolation parameters
   double U235_i;
@@ -26,7 +26,7 @@ struct FissionFraction
   double Pu241_f;
 };
 
-double fissionFractionsMills(int, double, double, FissionFraction);
+double fissionFractionsMills(int, double, FissionFraction);
 
 double fissionFractionsLinInt(int, double, FissionFraction);
 

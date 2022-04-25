@@ -19,7 +19,7 @@ using namespace std;
 
 using namespace HepMC3;
 
-double IBDEventMax(int par, double power, double time, FissionFraction fFrac,
+double IBDEventMax(int par, double time, FissionFraction fFrac,
                    bool isParam, int spectrumModel)
 {
   double result;
@@ -28,7 +28,7 @@ double IBDEventMax(int par, double power, double time, FissionFraction fFrac,
   
   for(double E_nu = 1.8; E_nu < 6; E_nu += stepSize)
   {
-    result = RAFlux(E_nu,par,power,time,fFrac,isParam,spectrumModel) * IBDSigmaTot0(E_nu);
+    result = RAFlux(E_nu,par,time,fFrac,isParam,spectrumModel) * IBDSigmaTot0(E_nu);
     
     if(result > maximum)
     {
@@ -44,7 +44,6 @@ void IBD_Event_Generate
   int seed,
   const char* rootFileName,
   const char* hepmc3FileName,
-  double power, // reactor thermal power (W)
   double time,
   FissionFraction fFrac,
   bool isParam,
@@ -103,10 +102,10 @@ void IBD_Event_Generate
     tree[i]->Branch("pzn",&pz_n);
   }  
 
-  double ymax = 1.05 * max(IBDEventMax(par[1],power,time,fFrac,isParam,spectrumModel),
-                           max(IBDEventMax(par[2],power,time,fFrac,isParam,spectrumModel),
-                               max(IBDEventMax(par[3],power,time,fFrac,isParam,spectrumModel),
-                                   IBDEventMax(par[4],power,time,fFrac,isParam,spectrumModel))));
+  double ymax = 1.05 * max(IBDEventMax(par[1],time,fFrac,isParam,spectrumModel),
+                           max(IBDEventMax(par[2],time,fFrac,isParam,spectrumModel),
+                               max(IBDEventMax(par[3],time,fFrac,isParam,spectrumModel),
+                                   IBDEventMax(par[4],time,fFrac,isParam,spectrumModel))));
   double counter = 0;
   while(counter<numberOfEvents)
   {  
@@ -116,7 +115,7 @@ void IBD_Event_Generate
       y = uniformDist(generator) * ymax;
       phi_e = uniformDist(generator) * 2 * M_PI;
       
-      if(y <= RAFlux(x,par[i],power,time,fFrac,isParam,spectrumModel) * IBDSigmaTot0(x))
+      if(y <= RAFlux(x,par[i],time,fFrac,isParam,spectrumModel) * IBDSigmaTot0(x))
       { 
         ++counter;
 

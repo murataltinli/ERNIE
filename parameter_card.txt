@@ -16,9 +16,6 @@ Seed= 1234
 # number of events
 N= 100000
 
-# reactor thermal power (GW)
-Power= 3.2
-
 # time (days)
 Time= 0
 
@@ -70,7 +67,7 @@ g= 4.30585e-02
 h= 2.84277e+00
 i= 2.09560e-01
 
-# Initial uranium mass (tonnes)
-UraniumMass= 76
+# Time burnup conversion parameter
+tb= 0.04210526 
 
 #*************************************************

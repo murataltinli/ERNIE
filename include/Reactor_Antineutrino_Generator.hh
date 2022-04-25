@@ -9,7 +9,6 @@ void Reactor_Antineutrino_Generate
   int,
   const char*,
   double,
-  double,
   FissionFraction,
   bool,
   int

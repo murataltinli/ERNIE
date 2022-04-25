@@ -13,13 +13,11 @@ https://doi.org/10.1016/j.net.2020.03.004.
 #include <cmath>
 
 // Mills model
-double fissionFractionsMills(int par, // 5: U235, 8: U238, 9: Pu239, 1: Pu241 
-                        double power, // reactor thermal power (W)
+double fissionFractionsMills(int par, // 5: U235, 8: U238, 9: Pu239, 1: Pu241
                         double time, // days
                         FissionFraction fPar)
 {
-  const double w2gw = pow(10,-9);
-  double I = power * w2gw * time / fPar.uraniumMass; // burnup (GWd/t)
+  double I = fPar.tb * time ; // burnup (GWd/t)
 
   double f8 = fPar.c + fPar.b * I + fPar.a * pow(I,2);
   double f9 = pow((1 - exp(-fPar.d * I)),fPar.e) * fPar.f;

@@ -3,6 +3,6 @@
 
 #include "Fission_Fractions.hh"
 
-double RAFlux(double, int, double, double, FissionFraction, bool, int);
+double RAFlux(double, int, double, FissionFraction, bool, int);
 
 #endif
