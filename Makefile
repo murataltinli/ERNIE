@@ -6,10 +6,10 @@ INCLUDES = -I./include -I$(HEPMC3_DIR)/include
 OBJECTS = IBD_Event_Generator.o Reactor_Antineutrino_Generator.o Positron_Angle.o \
 IBD_Cross_Section.o Energy_Momentum.o Reactor_Antineutrino_Flux.o Fission_Fractions.o \
 Reactor_Antineutrino_Spectra.o
-INPUT = src/Generator.cc
-OUTPUT = Generator
+INPUT = src/ernie.cc
+OUTPUT = ernie
 
-Generator: $(OBJECTS) $(INPUT) include/IBD_Event_Generator.hh \
+ernie: $(OBJECTS) $(INPUT) include/IBD_Event_Generator.hh \
 include/Reactor_Antineutrino_Generator.hh include/Reactor_Antineutrino_Flux.hh
 	$(CC) $(INPUT) $(OBJECTS) -o $(OUTPUT) $(CFLAGS) $(INCLUDES) $(LIBS)
 

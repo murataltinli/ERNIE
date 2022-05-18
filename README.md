@@ -1,4 +1,4 @@
-# Generator
+# ERNIE
 Reactor Antineutrino Inverse Beta Decay Generator
 
 # Compiling
@@ -17,5 +17,5 @@ make
 ```
 # Running
 ```
-./Generator <parameter_card_filename> <root_output_filename> <hepmc3_output_filename>
+./ernie <parameter_card_filename> <root_output_filename> <hepmc3_output_filename>
 ```

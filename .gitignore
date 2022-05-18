@@ -1,6 +1,6 @@
 *.hepmc3
 *.root
-Generator
+ernie
 plots
 .vscode
 *.log
