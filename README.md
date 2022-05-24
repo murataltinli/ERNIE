@@ -1,5 +1,5 @@
 # ERNIE
-Reactor Antineutrino Inverse Beta Decay Generator
+ESTÜ Reactor Neutrino and Inverse beta decay Event generator
 
 # Compiling
   

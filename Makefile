@@ -1,7 +1,7 @@
 CC = gcc
 CFLAGS = -Wall `root-config --cflags`
 LIBS = `root-config --glibs` -lHepMC3 -lstdc++ \
--Wl,-rpath $(HEPMC3_DIR)/lib
+-Wl,-rpath=$(HEPMC3_DIR)/lib -L$(HEPMC3_DIR)/lib
 INCLUDES = -I./include -I$(HEPMC3_DIR)/include
 OBJECTS = IBD_Event_Generator.o Reactor_Antineutrino_Generator.o Positron_Angle.o \
 IBD_Cross_Section.o Energy_Momentum.o Reactor_Antineutrino_Flux.o Fission_Fractions.o \
