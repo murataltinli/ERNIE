@@ -14,10 +14,10 @@
 Seed= 1234
 
 # number of events
-N= 100000
+N= 10000
 
 # time (days)
-Time= 0
+Time= 100
 
 # inverse beta decay option 
 # 0: without inverse beta decay
@@ -30,12 +30,12 @@ IBD= 1
 # 1: Huber-Mueller
 # 2: ILL-Vogel
 # 3: Mueller
-SpectrumModel= 1
+SpectrumModel= 2
 
 # fission fraction model option
 # 0: linear interpolation
 # 1: Mills model
-isParam= 0
+isParam= 1
 
 #********************************************************
 # linear interpolation parameters for fission fractions

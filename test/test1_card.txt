@@ -22,7 +22,7 @@ Time= 0
 # inverse beta decay option 
 # 0: without inverse beta decay
 # 1: with inverse beta decay 
-IBD= 1
+IBD= 0
 
 # antineutrino spectrum model option 
 # 0: User Defined*  
