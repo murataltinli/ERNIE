@@ -85,9 +85,9 @@ The subdirectory `test/` contains input and output files for two test runs.
 ```
 
 # Test runs
-Test1 run generates 100k reactor antineutrino events without inverse beta interactions at the beggining of a reactor fuel cycle. It uses Huber-Mueller model for spectrum calculation and the fission fractions are calculated using linear interpolation.
+Test1 run generates 10k reactor antineutrino events without inverse beta interactions at 100 days into the reactor fuel cycle. It uses Huber-Mueller model for spectrum calculation and the fission fractions are calculated using Mills model. Since fission fractions depend on burnup in Mills model, time is converted to burnup by a conversion parameter.
 
-Test2 run generates 10k inverse beta decay events at 100 days into the reactor fuel cycle. It uses ILL-Vogel model for spectrum calculation and the fission fractions are calculated using Mills model. Since fission fractions depend on burnup in Mills model time is converted to burnup by a conversion parameter.
+Test2 run generates 1k inverse beta decay events at the beggining of the reactor fuel cycle. It uses ILL-Vogel model for spectrum calculation and the fission fractions are calculated using linear interpolation.
 
 Details on the parameters used for the test runs can be found in the corresponding card files.
 
