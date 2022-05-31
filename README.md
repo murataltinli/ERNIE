@@ -42,47 +42,12 @@ The first argument is the input, which is the parameter card file. The program r
 If the program is used to generate antineutrinos only, without the inverse beta decay interactions, it will not generate a HepMC3 output even if it is specified as an argument.
 
 # Source package structure
-The topmost directory contains the README file, the package license, parameter card file and Makefile.
-```
-./Makefile
-./parameter_card.txt
-./README.md
-./LICENSE
-``` 
+The topmost directory contains the README file, the package license, a sample parameter card file and Makefile.
 
 The subdirectory `src/` contains the core set of library sources while
 the corresponding headers are located in `include/` directory. `src/` directory also contains main source file `ernie.cc`.
-```
-./src/Energy_Momentum.cc
-./src/Fission_Fractions.cc
-./src/IBD_Cross_Section.cc
-./src/IBD_Event_Generator.cc
-./src/Positron_Angle.cc
-./src/Reactor_Antineutrino_Flux.cc
-./src/Reactor_Antineutrino_Generator.cc
-./src/Reactor_Antineutrino_Spectra.cc
-./src/ernie.cc
-
-./include/Energy_Momentum.hh
-./include/Fission_Fractions.hh
-./include/IBD_Cross_Section.hh
-./include/IBD_Event_Generator.hh
-./include/Positron_Angle.hh
-./include/Reactor_Antineutrino_Flux.hh
-./include/Reactor_Antineutrino_Generator.hh
-./include/Reactor_Antineutrino_Spectra.hh
-```
 
 The subdirectory `test/` contains input and output files for two test runs.
-
-```
-./test/test1_card.txt
-./test/test1.root
-
-./test/test2_card.txt
-./test/test2.root
-./test/test2.hepmc3
-```
 
 # Test runs
 Test1 run generates 10k reactor antineutrino events without inverse beta interactions at 100 days into the reactor fuel cycle. It uses Huber-Mueller model for spectrum calculation and the fission fractions are calculated using Mills model. Since fission fractions depend on burnup in Mills model, time is converted to burnup by a conversion parameter.
@@ -90,6 +55,8 @@ Test1 run generates 10k reactor antineutrino events without inverse beta interac
 Test2 run generates 1k inverse beta decay events at the beggining of the reactor fuel cycle. It uses ILL-Vogel model for spectrum calculation and the fission fractions are calculated using linear interpolation.
 
 Details on the parameters used for the test runs can be found in the corresponding card files.
+
+ROOTv6.22/06 and HepMC3.2.4 were used to generate the output files.
 
 # ROOT Output
 Inside the ROOT output files, the data generated for U235, U238, Pu239, Pu241 and their total is written in individual trees.
