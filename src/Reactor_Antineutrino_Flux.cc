@@ -57,7 +57,7 @@ double RAFlux
     s9 = MSpectrum(9,E_nu);
     s1 = MSpectrum(1,E_nu);
   }
-  else if(spectrumModel == 0)
+  else
   {
     s5 = UserSpectrum(5,E_nu);
     s8 = UserSpectrum(8,E_nu);

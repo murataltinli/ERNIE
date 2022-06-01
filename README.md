@@ -50,7 +50,7 @@ the corresponding headers are located in `include/` directory. `src/` directory 
 The subdirectory `test/` contains input and output files for two test runs.
 
 # Test runs
-Test1 run generates 10k reactor antineutrino events without inverse beta interactions at 100 days into the reactor fuel cycle. It uses Huber-Mueller model for spectrum calculation and the fission fractions are calculated using Mills model. Since fission fractions depend on burnup in Mills model, time is converted to burnup by a conversion parameter.
+Test1 run generates 10k reactor antineutrino events without inverse beta interactions at 100 days into the reactor fuel cycle. It uses Huber-Mueller model for spectrum calculation and the fission fractions are calculated using Mills model. Since fission fractions depend on burnup in Mills model, time is converted to burnup by using average daily burnup as parameter.
 
 Test2 run generates 1k inverse beta decay events at the beggining of the reactor fuel cycle. It uses ILL-Vogel model for spectrum calculation and the fission fractions are calculated using linear interpolation.
 

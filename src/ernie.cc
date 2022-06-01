@@ -145,19 +145,19 @@ int main(int argc, char** argv)
       {
         rootFileName = "Reactor_Antineutrino_Events.root";
       }
-      cout << "Generating Antineutrinos..." << endl;
+      cout << "Generating antineutrinos..." << endl;
       Reactor_Antineutrino_Generate(numberOfEvents,seed,rootFileName,time,fFrac,
                                     isParam,spectrumModel);
-      cout << "Generated events are written into the file:" << endl
+      cout << "Generated data is written into the file:" << endl
            << "=> " << rootFileName << endl;
       return 0;
     }
     else
     {
-      cout << "Generating Events..." << endl;
+      cout << "Generating antineutrinos and IBD events..." << endl;
       IBD_Event_Generate(numberOfEvents,seed,rootFileName,hepmc3FileName,time,fFrac,
                           isParam,spectrumModel);
-      cout << "Generated events are written into the files:" << endl
+      cout << "Generated data is written into the files:" << endl
            << "=> " << rootFileName << endl
            << "=> " << hepmc3FileName << endl;
       return 0;

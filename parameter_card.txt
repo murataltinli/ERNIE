@@ -1,14 +1,4 @@
-# Parameter card
-
-#******************************************************************************************************
-# Fission fraction values are from:
-#
-# Bernstein, A., G. Baldwin, B. Boyer, M. Goodman, J. Learned, J. Lund, D. Reyna, and R. Svoboda. 
-# “Nuclear Security Applications of Antineutrino Detectors: Current Capabilities and Future Prospects.”
-# Science & Global Security 18, no. 3 (December 10, 2010): 127–92.
-# https://arxiv.org/abs/0908.4338
-#
-#******************************************************************************************************
+# ERNIE parameter card file
 
 # random generator seed
 Seed= 1234
@@ -26,7 +16,8 @@ IBD= 1
 
 # antineutrino spectrum model option 
 # 0: User Defined*  
-#     *UserSpectrum() function in Reactor_Antineutrino_Spectra.cc file should be modified to use
+#   *To use a user defined spectrum model,
+#    add the model parameters to UserSpectrum() function in Reactor_Antineutrino_Spectra.cc
 # 1: Huber-Mueller
 # 2: ILL-Vogel
 # 3: Mueller
@@ -67,7 +58,7 @@ g= 4.30585e-02
 h= 2.84277e+00
 i= 2.09560e-01
 
-# time burnup conversion parameter
+# average daily burnup
 tb= 0.04210526 
 
 #*************************************************
