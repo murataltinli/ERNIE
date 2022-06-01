@@ -14,7 +14,8 @@ ROOT: https://root.cern/
 HepMC3: https://gitlab.cern.ch/hepmc/HepMC3
 
 # Compiling
-First, `thisroot` file, located in ROOT installation path should be run and `HEPMC3_DIR` environmental variable should be set as HepMC3 installation directory, containing library directory `/lib`, using the following command lines:
+Before compiling, make sure ROOT and HEPMC3 environment variables are properly set:
+
 ### for bash, sh, ksh shell
 ```
 source /path/to/ROOT_directory/bin/thisroot.sh
@@ -30,16 +31,16 @@ Then, program is compiled using the
 ```
 make
 ```
-command inside the directory containing `Makefile`.
+command inside the directory containing `Makefile`. This should create the executable `ernie`.
 
 # Running
-ERNIE runs with 3 arguments. 
+ERNIE accepts three command line arguments. 
 ```
 ./ernie <parameter_card_filename> <root_output_filename> <hepmc3_output_filename>
 ```
-The first argument is the input, which is the parameter card file. The program runs using the parameters inside the parameter card file. The second and the third arguments are output file names for ROOT and HepMC3 outputs, respectively. If no output name is specified output files will have default names. 
+The first argument is the parameter card file which configures `ernie`. The second and the third arguments are the ROOT and HepMC3 output file names. These are optional arguments and if not provided default file names will be used. 
 
-If the program is used to generate antineutrinos only, without the inverse beta decay interactions, it will not generate a HepMC3 output even if it is specified as an argument.
+If the program is used with the IBD option turned off, it will not generate a HepMC3 output even if a file name is specified as an argument.
 
 # Source package structure
 The topmost directory contains the README file, the package license, a sample parameter card file and Makefile.
@@ -49,21 +50,23 @@ the corresponding headers are located in `include/` directory. `src/` directory 
 
 The subdirectory `test/` contains input and output files for two test runs.
 
-# Test runs
+# Testing `ernie`
+Card files and outputs of two test runs are provided under the `test` folder
+
 Test1 run generates 10k reactor antineutrino events without inverse beta interactions at 100 days into the reactor fuel cycle. It uses Huber-Mueller model for spectrum calculation and the fission fractions are calculated using Mills model. Since fission fractions depend on burnup in Mills model, time is converted to burnup by using average daily burnup as parameter.
 
-Test2 run generates 1k inverse beta decay events at the beggining of the reactor fuel cycle. It uses ILL-Vogel model for spectrum calculation and the fission fractions are calculated using linear interpolation.
+Test2 run generates 1k inverse beta decay events at the begginning of the reactor fuel cycle. It uses ILL-Vogel model for spectrum calculation and the fission fractions are calculated using linear interpolation.
 
 Details on the parameters used for the test runs can be found in the corresponding card files.
 
-ROOTv6.22/06 and HepMC3.2.4 were used to generate the output files.
+The output files included in the package were generated using ROOTv6.22/06 and HepMC3.2.4.
 
 # ROOT Output
 Inside the ROOT output files, the data generated for U235, U238, Pu239, Pu241 and their total is written in individual trees.
 
-If only reactor antineutinos are generated, without inverse beta decay interactions, the trees in output will have only one branch named `Enu` which holds the energy (MeV) values of the generated antineutrinos.
+If `ernie` was run with the IBD option turned off, the trees in the output will have only one branch named `Enu` which holds the energy (MeV) values of the generated antineutrinos.
 
-In the case that inverse beta decay interactions are generated, trees will have branches with the following names:
+If the IBD option is turned on, trees will have the following additional branches:
 
 `Enu`: antineutrino energy (MeV)
 
