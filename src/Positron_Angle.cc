@@ -17,7 +17,7 @@ double positron_dist(double E_nu, double costheta_e)
 {
   const double f = 1;
   const double f2 = 3.706;
-  const double g = 1.26;
+  const double g = 1.2762;
   const double E_e = E_nu - (Delta); // positron energy (MeV)
   const double p_e = sqrt(pow(E_e,2)-pow(m_e,2)); // positron momentum (MeV/c)
   const double v_e = p_e / E_e; // positron velocity
