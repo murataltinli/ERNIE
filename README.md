@@ -1,19 +1,33 @@
+<!--------------------------------------------------------------------------------------------------------------->
 # ERNIE
+<!--------------------------------------------------------------------------------------------------------------->
 ESTÜ Reactor Neutrino and Inverse beta decay Event generator
 
+
+<!--------------------------------------------------------------------------------------------------------------->
 # Introduction
+<!--------------------------------------------------------------------------------------------------------------->
+
 ERNIE generates nuclear reactor electron antineutrinos, and inverse beta decay events induced by these particles, using the Monte Carlo method. The program allows usage of different antineutrino energy spectra models and can simulate the time evolution of the overall antineutrino spectrum. 
 
 ERNIE uses a parameter card file as input and outputs the generated data in ROOT and HepMC3 formats.
 
+
+<!--------------------------------------------------------------------------------------------------------------->
 # Required libraries
+<!--------------------------------------------------------------------------------------------------------------->
+
 Since ERNIE uses ROOT and HepMC3 formats to output generated data, ROOT and HepMC3 must be installed to use this program.
 
 ROOT: https://root.cern/ 
 
 HepMC3: https://gitlab.cern.ch/hepmc/HepMC3
 
+
+<!--------------------------------------------------------------------------------------------------------------->
 # Compiling
+<!--------------------------------------------------------------------------------------------------------------->
+
 Before compiling, make sure ROOT and HEPMC3 environment variables are properly set:
 
 ### for bash, sh, ksh shell
@@ -33,7 +47,11 @@ make
 ```
 command inside the directory containing `Makefile`. This should create the executable `ernie`.
 
+
+<!--------------------------------------------------------------------------------------------------------------->
 # Running
+<!--------------------------------------------------------------------------------------------------------------->
+
 ERNIE accepts three command line arguments. 
 ```
 ./ernie <parameter_card_filename> <root_output_filename> <hepmc3_output_filename>
@@ -42,7 +60,11 @@ The first argument is the parameter card file which configures `ernie`. The seco
 
 If the program is used with the IBD option turned off, it will not generate a HepMC3 output even if a file name is specified as an argument.
 
+
+<!--------------------------------------------------------------------------------------------------------------->
 # Source package structure
+<!--------------------------------------------------------------------------------------------------------------->
+
 The topmost directory contains the README file, the package license, a sample parameter card file and Makefile.
 
 The subdirectory `src/` contains the core set of library sources while
@@ -50,7 +72,11 @@ the corresponding headers are located in `include/` directory. `src/` directory 
 
 The subdirectory `test/` contains input and output files for two test runs.
 
+
+<!--------------------------------------------------------------------------------------------------------------->
 # Testing `ernie`
+<!--------------------------------------------------------------------------------------------------------------->
+
 Card files and outputs of two test runs are provided under the `test` folder
 
 Test1 run generates 10k reactor antineutrino events without inverse beta interactions at 100 days into the reactor fuel cycle. It uses Huber-Mueller model for spectrum calculation and the fission fractions are calculated using Mills model. Since fission fractions depend on burnup in Mills model, time is converted to burnup by using average daily burnup as parameter.
@@ -59,12 +85,16 @@ Test2 run generates 1k inverse beta decay events at the begginning of the reacto
 
 Details on the parameters used for the test runs can be found in the corresponding card files.
 
-The output files included in the package were generated using ROOTv6.22/06 and HepMC3.2.4.
+The output files included in the package were generated using ROOTv6.22/06 and HepMC3.2.4. The program (ernie) used to generate the test outputs was compiled using gcc-9.4.0 compiler in Ubuntu 20.04.4 LTS operating system.
 
+
+<!--------------------------------------------------------------------------------------------------------------->
 # ROOT Output
+<!--------------------------------------------------------------------------------------------------------------->
+
 Inside the ROOT output files, the data generated for U235, U238, Pu239, Pu241 and their total is written in individual trees.
 
-If `ernie` was run with the IBD option turned off, the trees in the output will have only one branch named `Enu` which holds the energy (MeV) values of the generated antineutrinos.
+If `ernie` was run with the IBD option turned off, the trees in the output will have only one branch named `Enu` which holds the energy (MeV)d values of the generated antineutrinos.
 
 If the IBD option is turned on, trees will have the following additional branches:
 
