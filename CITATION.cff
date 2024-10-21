@@ -1,0 +1,26 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+authors:
+- family-names: "Altınlı"
+  given-names: "Murat"
+  orcid: "https://orcid.org/0000-0002-1646-8607"
+- family-names: "Gamsızkan"
+  given-names: "Halil"
+  orcid: "https://orcid.org/0000-0002-2578-6295"
+title: "ERNIE"
+version: 1.0.0
+date-released: 2024-10-21
+url: "https://github.com/murataltinli/ERNIE"
+preferred-citation:
+  type: article
+  authors:
+    - family-names: "Altınlı"
+      given-names: "Murat"
+    - family-names: "Gamsızkan"
+      given-names: "Halil"
+  title: "ERNIE: A reactor antineutrino inverse beta decay event generator"
+  journal: "Computer Physics Communications"
+  volume: "282"
+  pages: "108543"
+  year: "2023"
+  doi: "10.1016/j.cpc.2022.108543"
